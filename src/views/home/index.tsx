@@ -9,6 +9,7 @@ import CommonLayout from "../../layout/common";
 export default function Home() {
   //Integrate the Backend
   var apiPath = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     fetch(`${apiPath}/api`, {
       headers: {
