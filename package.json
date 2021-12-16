@@ -50,5 +50,5 @@
     "@types/react-router-hash-link": "^2.4.4",
     "@types/styled-components": "^5.1.17"
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://207.244.255.87:4000"
 }
