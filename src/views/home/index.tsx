@@ -8,8 +8,9 @@ import BlogView from "./blogview/index";
 import CommonLayout from "../../layout/common";
 export default function Home() {
   //Integrate the Backend
+  var apiPath = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    fetch("http://207.244.255.87:4000/api", {
+    fetch(`${apiPath}/api`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
