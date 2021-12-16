@@ -9,7 +9,7 @@ import CommonLayout from "../../layout/common";
 export default function Home() {
   //Integrate the Backend
   useEffect(() => {
-    fetch(`https://api.treebee.com.br/api`, {
+    fetch("https://api.treebee.com.br/api", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
