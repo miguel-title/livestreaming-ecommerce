@@ -55,13 +55,12 @@ jobs:
           source: "build"
           target: "/var/www/livestreaming-ecommerce"
 
-      - name: Run SSH command on target
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            PATH=$PATH:/root/.nvm/versions/node/v14.17.6/bin
-            pm2 kill treebee
-            pm2 start build/index.html --name treebee
+      # - name: Run SSH command on target
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.SSH_KEY }}
+      #     script: |
+      #       PATH=$PATH:/root/.nvm/versions/node/v14.17.6/bin
+      #       pm2 restart treebee
