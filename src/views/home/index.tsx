@@ -17,7 +17,7 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.message, "Message");
+        console.log(data.message, "_Message_");
       });
   }, []);
 
