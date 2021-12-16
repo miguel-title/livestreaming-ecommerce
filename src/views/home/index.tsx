@@ -9,7 +9,7 @@ import CommonLayout from "../../layout/common";
 export default function Home() {
   //Integrate the Backend
   useEffect(() => {
-    fetch("/api", {
+    fetch("http://207.244.255.87:4000/api", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
