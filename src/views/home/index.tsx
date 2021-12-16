@@ -8,10 +8,8 @@ import BlogView from "./blogview/index";
 import CommonLayout from "../../layout/common";
 export default function Home() {
   //Integrate the Backend
-  var apiPath = process.env.REACT_APP_API_URL;
-  console.log(apiPath, "apiPath");
   useEffect(() => {
-    fetch(`${apiPath}/api`, {
+    fetch(`https://api.treebee.com.br/api`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
