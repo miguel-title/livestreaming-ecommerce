@@ -9,7 +9,12 @@ import CommonLayout from "../../layout/common";
 export default function Home() {
   //Integrate the Backend
   useEffect(() => {
-    fetch("/api")
+    fetch("/api", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message);
