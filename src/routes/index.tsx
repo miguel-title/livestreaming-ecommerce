@@ -15,6 +15,7 @@ export function renderRoutes(routes: RouteItem[] = []) {
           const Component = route.component;
           const Guard = route.guard || Fragment;
           const Layout = route.layout || Fragment;
+          const type = route.type;
           return (
             <Route
               key={`routes-${idx}`}
@@ -25,7 +26,7 @@ export function renderRoutes(routes: RouteItem[] = []) {
                     {route.routes && route.routes ? (
                       renderRoutes(route.routes)
                     ) : (
-                      <Component />
+                      <Component type={type} />
                     )}
                   </Layout>
                 </Guard>
@@ -44,6 +45,7 @@ type RouteItem = {
   guard?: ({ children }: { children: ReactNode }) => JSX.Element;
   path: string;
   component?: any;
+  type?: number;
   layout?: ({ children }: { children: ReactNode }) => JSX.Element;
   routes?: {
     component: any;
@@ -144,6 +146,19 @@ const routes: RouteItem[] = [
     path: "/startlive",
     layout: VendorDashboard,
     component: lazy(() => import("../views/vendordashboard/lives/startlive")),
+  },
+
+  {
+    exact: true,
+    path: "/vendedor",
+    component: lazy(() => import("../views/vendor")),
+    type: 0,
+  },
+  {
+    exact: true,
+    path: "/cliente",
+    component: lazy(() => import("../views/vendor")),
+    type: 1,
   },
 ];
 

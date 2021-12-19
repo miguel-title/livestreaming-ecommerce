@@ -36,7 +36,7 @@ export default function index() {
               <IconImg src={Shop}></IconImg>
             </IconPart>
             <TextPart>Vendedor</TextPart>
-            <Link to="vendor">
+            <Link to="/vendedor">
               <ButtonPart>PARTICIPAR</ButtonPart>
             </Link>
           </SubButtonPart>
