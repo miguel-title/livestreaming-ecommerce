@@ -160,6 +160,12 @@ const routes: RouteItem[] = [
     component: lazy(() => import("../views/vendor")),
     type: 1,
   },
+
+  {
+    exact: true,
+    path: "/login",
+    component: lazy(() => import("../views/login")),
+  },
 ];
 
 export default routes;

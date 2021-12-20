@@ -77,7 +77,7 @@ export default function index() {
           <UserAction>
             {/* <BroadcastButton></BroadcastButton> */}
 
-            <Link to="/">
+            <Link to="/login">
               <UserButton>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
