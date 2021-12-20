@@ -145,7 +145,7 @@ export default function Vendor(props: Props) {
   };
 
   const submitData = async () => {
-    fetch("http://localhost:4000/vendor/register", {
+    fetch("https://api.treebee.com.br/vendor/register", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

@@ -67,9 +67,7 @@ const isValidToken = (accessToken: string): boolean => {
 };
 
 const setSession = async (accessToken: string | null) => {
-  console.log("bbb");
   if (accessToken) {
-    console.log("ccc");
     localStorage.setItem("accessToken", accessToken);
     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     userFormeAxiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -141,7 +139,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       userName: string;
       role: number;
       token: string;
-    }>("http://localhost:4000/vendor/login", {
+    }>("https://api.treebee.com.br/vendor/login", {
       email: _email,
       password: _password,
       role: _role,
@@ -181,7 +179,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       userName: string;
       role: number;
       token: string;
-    }>("http://localhost:4000/vendor/register", {
+    }>("https://api.treebee.com.br/vendor/register", {
       email: _email,
       userName: _name,
       password: _password,
@@ -210,9 +208,15 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         if (accessToken && isValidToken(accessToken)) {
           await setSession(accessToken);
 
-          const response = await axios.post<{ user: User }>("/api/auth/me");
-          const { user } = response.data;
-
+          // const response = await axios.post<{ user: User }>("/api/auth/me");
+          // const { user } = response.data;
+          const token: any = jwtDecode(accessToken);
+          console.log(token);
+          const user: User = {
+            email: token.email,
+            userName: token.name,
+            role: token.role,
+          };
           dispatch({
             type: "INITIALISE",
             payload: {

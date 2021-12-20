@@ -10,6 +10,40 @@ export const HeaderWrapper = styled.div`
   svg {
     vertical-align: middle;
   }
+
+  #avatar-tip {
+    background-color: #e8b89b;
+    color: #fff;
+    border: 1px solid #e8b89b;
+    font-weight: bold;
+    font-size: 14px;
+
+    &:after {
+      border-top-color: #e8b89b;
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 35px;
+
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+
+    .item {
+      margin-top: 5px;
+      color: #fff;
+      background-color: #e8b89b;
+      padding: 10px;
+
+      cursor: pointer;
+
+      :hover {
+        background-color: #c5b097;
+      }
+    }
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -99,7 +133,10 @@ export const HeaderLink = styled.div`
   }
 `;
 
-export const UserAction = styled.div``;
+export const UserAction = styled.div`
+  display: flex;
+  justify-content: right;
+`;
 
 export const BroadcastButton = styled.a``;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // import { Link } from "react-router-dom";
 
@@ -28,6 +28,7 @@ import {
 
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import ReactTooltip from "react-tooltip";
 
 export default function Header() {
   const showMobileMenu = () => {
@@ -46,7 +47,9 @@ export default function Header() {
     element?.classList.remove("visible");
   };
 
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
+
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const handleLogout = async (): Promise<void> => {
@@ -58,6 +61,29 @@ export default function Header() {
       toast.error("Unable to logout");
     }
   };
+
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const checkIfClickedOutside = (e: any) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+
+      if (inputRef.current && !inputRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, []);
 
   return (
     <HeaderWrapper>
@@ -114,22 +140,38 @@ export default function Header() {
                 </UserButton>
               </Link>
             ) : (
-              <UserButton onClick={handleLogout}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="35"
-                  height="35"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                  style={{ verticalAlign: "middle" }}
+              <>
+                <UserButton
+                  onClick={handleShowMenu}
+                  data-tip
+                  data-for="avatar-tip"
                 >
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                  <path
-                    fillRule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                  ></path>
-                </svg>
-              </UserButton>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                    style={{ verticalAlign: "middle" }}
+                  >
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                    <path
+                      fillRule="evenodd"
+                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                    ></path>
+                  </svg>
+                </UserButton>
+                {showMenu ? (
+                  <div className="menu" ref={inputRef}>
+                    <div className="item" onClick={handleLogout}>
+                      Logout
+                    </div>
+                  </div>
+                ) : null}
+                <ReactTooltip id="avatar-tip">
+                  <span>{user?.userName}</span>
+                </ReactTooltip>
+              </>
             )}
           </UserAction>
           <MobileNavMenu>

@@ -69,7 +69,6 @@ const routes: RouteItem[] = [
   {
     exact: true,
     path: "/",
-    guard: MainGuard,
     component: lazy(() => import("../views/home")),
   },
   {

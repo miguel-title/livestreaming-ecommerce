@@ -60,49 +60,6 @@ export default function Login() {
     status === 0 && toast.error("Usuario y/o Password incorrectos");
 
     status === -1 && toast.error("El usuario actual está inactivo.");
-    // login({
-    //   email: email,
-    //   password: password,
-    //   role: role,
-    // })
-    //   .then((res: any) => {
-    //     if (res.status === 400) {
-    //       toast.error(res.message);
-    //     } else {
-    //       console.log(res);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err);
-    //   });
-
-    // fetch("http://localhost:4000/vendor/login", {
-    //   method: "post",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     email: email,
-    //     password: password,
-    //     role: role,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.status == 200) {
-    //       localStorage.setItem("token", data.token);
-    //       localStorage.setItem("vendor", data.vendor);
-
-    //       if (role == 0) {
-    //         return <Navigate to="/vendor-dashboard" />;
-    //       } else {
-    //         return <Navigate to="/painel-usuario" />;
-    //       }
-    //     } else {
-    //       toast.error(data.message);
-    //     }
-    //   });
   };
 
   const handleInputChange = (e: any) => {
