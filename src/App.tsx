@@ -5,15 +5,17 @@ import { createBrowserHistory } from "history";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
+import { AuthProvider } from "./contexts/JWTAuthContext";
+
 import routes, { renderRoutes } from "./routes";
-import Header from "./views/header";
-import Footer from "./views/footer";
 const history = createBrowserHistory();
 
 function App() {
   return (
     <>
-      <Router>{renderRoutes(routes)}</Router>
+      <Router>
+        <AuthProvider>{renderRoutes(routes)}</AuthProvider>
+      </Router>
       <ToastContainer />
     </>
   );

@@ -83,7 +83,8 @@ export const InputPart = styled.input`
   font-size: 20px;
   width: 100%;
   border: none;
-  height: 30px;
+  height: 40px;
+  margin-bottom: 20px;
 `;
 
 export const LogoContainer = styled.div`
@@ -139,4 +140,9 @@ export const ContentPart = styled.div`
   align-items: center;
 
   padding: 50px 0;
+
+  .inputContainer {
+    width: 100%;
+    text-align: left;
+  }
 `;

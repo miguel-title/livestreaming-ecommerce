@@ -85,8 +85,6 @@ export default function Vendor(props: Props) {
     setEstados(estadoOptions);
   }, []);
 
-  console.log(props.type, "aaa");
-
   //validation
   const validEmailRegex = RegExp(
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
