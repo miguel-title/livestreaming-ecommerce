@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const EditUserAccountContainer = styled.div`
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  padding: 25px 35px;
+  @media (max-width: 992px) {
+    width: calc(100% - 60px);
+  }
+`;
+
 export const EditUserAccountFormPart = styled.div`
   margin-top: 50px;
 `;
