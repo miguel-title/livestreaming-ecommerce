@@ -14,6 +14,16 @@ export const Register = async (data: any) => {
   }
 };
 
+export const UploadImage = async (data: any) => {
+  try {
+    const response = await axios.post<{}>(`${ServerUrl}/vendor/upload`, data);
+    if (response.status === 200) return response.data;
+    else return [];
+  } catch (err) {
+    return err;
+  }
+};
+
 export const UpdateAccount = async (data: any) => {
   try {
     const response = await axios.post<{}>(

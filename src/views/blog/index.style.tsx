@@ -98,7 +98,7 @@ export const BlogItemTitle = styled.div`
   display: inline-block;
   color: #e8b89b;
   text-align: center;
-  font-size: calc(1.375rem + 1.5vw);
+  font-size: 36px;
   position: relative;
   font-weight: 600;
 

@@ -27,12 +27,22 @@ export default function index() {
           <BlogViewItemPart>
             <BlogViewItem src={Blog1} />
             <BlogItemTitle>O que é Live Shop?</BlogItemTitle>
-            <BlogItemLink>Leia mais &gt;</BlogItemLink>
+            <Link
+              to={"/blog/0"}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <BlogItemLink>Leia mais &gt;</BlogItemLink>
+            </Link>
           </BlogViewItemPart>
           <BlogViewItemPart>
             <BlogViewItem src={Blog2} />
             <BlogItemTitle>Conheça o Live Stream Shopping</BlogItemTitle>
-            <BlogItemLink>Leia mais &gt;</BlogItemLink>
+            <Link
+              to={"/blog/1"}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <BlogItemLink>Leia mais &gt;</BlogItemLink>
+            </Link>
           </BlogViewItemPart>
         </BlogViewContentPart>
         <BlogButtonContainer>

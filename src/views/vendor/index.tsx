@@ -22,7 +22,7 @@ import Select from "react-select";
 
 import { useForm } from "react-hook-form";
 
-import { Register } from "../../apis";
+import { Register, UploadImage } from "../../apis";
 
 type Props = { type: number };
 
@@ -31,21 +31,24 @@ export default function Vendor(props: Props) {
   const [cidades, setCidades] = useState<any>([]);
   const [curEstado, setCurEstado] = useState<string>("");
 
-  const [name, setName] = useState(null);
-  const [surname, setSurname] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [cpf, setCpf] = useState(null);
-  const [store, setStore] = useState(null);
-  const [cnpj, setCnpj] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [number, setNumber] = useState(null);
-  const [complement, setComplement] = useState(null);
-  const [neighborhood, setNeighborhood] = useState(null);
-  const [estado, setEstado] = useState(null);
-  const [city, setCity] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [confirmPassword, setConfirmPassword] = useState(null);
+  const [name, setName] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [cpf, setCpf] = useState<string>("");
+  const [store, setStore] = useState<string>("");
+  const [cnpj, setCnpj] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [number, setNumber] = useState<string>("");
+  const [complement, setComplement] = useState<string>("");
+  const [neighborhood, setNeighborhood] = useState<string>("");
+  const [estado, setEstado] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isCheck, setIsCheck] = useState<boolean>(false);
+
+  const [selectedFile, setSelectedFile] = useState<any>();
+  const [isFilePicked, setIsFilePicked] = useState(false);
 
   const onConditionChange = (e: any) => {
     setEstado(e.value);
@@ -147,7 +150,18 @@ export default function Vendor(props: Props) {
   };
 
   const submitData = async () => {
+    // const formData = new FormData();
+
+    // formData.append("File", selectedFile);
+    var avataUrl = "";
+    // await UploadImage(formData)
+    //   .then((data: any) => (avataUrl = data.avataUrl))
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
     await Register({
+      avata: avataUrl,
       name: name,
       surname: surname,
       email: email,
@@ -176,6 +190,11 @@ export default function Vendor(props: Props) {
       });
   };
 
+  const changeHandler = (e: any) => {
+    setSelectedFile(e.target.files[0]);
+    setIsFilePicked(true);
+  };
+
   return (
     <CommonLayout>
       <Wrapper>
@@ -184,6 +203,9 @@ export default function Vendor(props: Props) {
             {props.type == 0 ? "Cadastro de Vendedor" : "Cadastro de Comprador"}
           </Title>
           <FormPart onSubmit={handleSubmit(submitData)}>
+            {/* <SubPart>
+              <input type="file" name="image" onChange={changeHandler} />
+            </SubPart> */}
             <SubFullPart>
               <FormLabel>
                 Nome<RedLabel>*</RedLabel>
