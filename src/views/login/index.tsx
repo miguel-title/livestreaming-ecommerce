@@ -57,6 +57,8 @@ export default function Login() {
   const submitData = async () => {
     const status = await login(email, password, role);
 
+    console.log(status);
+
     status === 0 && toast.error("Usuario y/o Password incorrectos");
 
     status === -1 && toast.error("El usuario actual está inactivo.");
