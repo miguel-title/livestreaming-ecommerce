@@ -50,6 +50,8 @@ export const TabPart = styled.div`
   line-height: 50px;
   color: #e8b89b;
 
+  cursor: pointer;
+
   &.isSelected {
     color: white;
     background-color: #e8b89b;
@@ -95,6 +97,42 @@ export const LogoContainer = styled.div`
 
 export const SubmitButtonContainer = styled.div`
   width: 200px;
+
+  .register {
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #e8b89b;
+    width: 100%;
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    margin: auto;
+
+    height: 50px;
+
+    font-size: 20px;
+
+    line-height: 50px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    @media (max-width: 992px) {
+      width: 90%;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 12px;
+    }
+  }
 
   .submit {
     text-transform: uppercase;
@@ -145,4 +183,8 @@ export const ContentPart = styled.div`
     width: 100%;
     text-align: left;
   }
+`;
+
+export const RegisterButton = styled.div`
+  cursor: pointer;
 `;

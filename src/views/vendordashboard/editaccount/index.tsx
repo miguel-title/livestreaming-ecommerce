@@ -42,9 +42,9 @@ export default function EditAccount() {
   const [name, setName] = useState(null);
   const [surname, setSurname] = useState(null);
   const [email, setEmail] = useState(null);
-  const [cpf, setCpf] = useState(null);
+  const [cpf, setCpf] = useState<string>();
   const [store, setStore] = useState(null);
-  const [cnpj, setCnpj] = useState(null);
+  const [cnpj, setCnpj] = useState<string>();
   const [address, setAddress] = useState(null);
   const [number, setNumber] = useState(null);
   const [complement, setComplement] = useState(null);
@@ -161,14 +161,8 @@ export default function EditAccount() {
     if (name === "email") {
       setEmail(target.value);
     }
-    if (name === "cpf") {
-      setCpf(target.value);
-    }
     if (name === "store") {
       setStore(target.value);
-    }
-    if (name === "cnpj") {
-      setCnpj(target.value);
     }
     if (name === "address") {
       setAddress(target.value);
@@ -257,6 +251,60 @@ export default function EditAccount() {
     setNeighborhood(accountInfo.neighborhood);
   }, [accountInfo]);
 
+  const handleCpfChange = (event: any) => {
+    // Get only the numbers from the data input
+    let data = event.target.value.replace(/\D/g, "");
+    // Checking data length to define if it is cpf or cnpj
+    if (data.length <= 11) {
+      // It's cpf
+      let vcpf = "";
+      let parts = Math.ceil(data.length / 3);
+      for (let i = 0; i < parts; i++) {
+        if (i === 3) {
+          vcpf += `-${data.substr(i * 3)}`;
+          break;
+        }
+        vcpf += `${i !== 0 ? "." : ""}${data.substr(i * 3, 3)}`;
+      }
+
+      // Update state
+      setCpf(vcpf);
+    }
+  };
+
+  const handleCnpjChange = (event: any) => {
+    // Get only the numbers from the data input
+    let data = event.target.value.replace(/\D/g, "");
+    // Checking data length to define if it is cpf or cnpj
+    if (data.length > 8) {
+      // It's cnpj
+      let cnpj = `${data.substr(0, 2)}.${data.substr(2, 3)}.${data.substr(
+        5,
+        3
+      )}/`;
+      if (data.length > 12)
+        cnpj += `${data.substr(8, 4)}-${data.substr(12, 2)}`;
+      else cnpj += data.substr(8);
+      // Pass formatting for the data
+      data = cnpj;
+    } else {
+      // It's cpf
+      let cpf = "";
+      cpf += `${data.substr(0, 2)}`;
+      let parts = Math.ceil((data.length - 2) / 3);
+      for (let i = 0; i < parts; i++) {
+        if (i == 0) {
+          cpf += `${i == 0 ? "." : ""}${data.substr(2, 3)}`;
+        } else if (i == 1) {
+          cpf += `.${data.substr(5, 3)}`;
+        }
+      }
+      // Pass formatting for the data
+      data = cpf;
+    }
+    setCnpj(data);
+  };
+
   return (
     <EditUserAccountContainer>
       <Title>Editar dados da conta</Title>
@@ -302,9 +350,10 @@ export default function EditAccount() {
               required: CpfSelected && cpf == "",
               pattern: validCpfRegex,
             })}
-            onChangeCapture={handleInputChange}
+            onChangeCapture={handleCpfChange}
             className="cpf-relative"
             defaultValue={accountInfo.cpf}
+            value={cpf}
           />
           <p className="cpf-relative">
             {errors.cpf && (
@@ -317,9 +366,10 @@ export default function EditAccount() {
               required: !CpfSelected && cnpj == "",
               pattern: validCnpjRegex,
             })}
-            onChangeCapture={handleInputChange}
+            onChangeCapture={handleCnpjChange}
             defaultValue={accountInfo.cnpj}
             className="cnpj-relative invisible"
+            value={cnpj}
           />
           <p className="cnpj-relative invisible">
             {errors.store && (
@@ -336,6 +386,7 @@ export default function EditAccount() {
             {...register("name", { required: CpfSelected && name == "" })}
             defaultValue={accountInfo.name}
             onChangeCapture={handleInputChange}
+            value={cnpj}
           />
           <p className="cpf-relative">
             {errors.name && (
@@ -474,6 +525,7 @@ export default function EditAccount() {
               })}
               onChange={onConditionChange}
               options={estados}
+              placeholder="Selecionar"
               value={vestado}
             />
             <p>
@@ -494,6 +546,7 @@ export default function EditAccount() {
               })}
               onChange={onCityChange}
               options={cidades}
+              placeholder="Selecionar"
               value={vcity}
             />
             <p>

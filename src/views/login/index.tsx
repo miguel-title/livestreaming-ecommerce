@@ -19,11 +19,14 @@ import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [role, setRole] = useState<number>(1); //User
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const [curRegisterLink, setCurRegisterLink] = useState<string>("/cliente");
 
   const handleChangeRole = (role: number) => {
     setRole(role);
@@ -37,12 +40,16 @@ export default function Login() {
 
       var element = document.querySelector(".Role2");
       element?.classList.remove("isSelected");
+
+      setCurRegisterLink("/cliente");
     } else if (role == 0) {
       var element = document.querySelector(".Role1");
       element?.classList.remove("isSelected");
 
       var element = document.querySelector(".Role2");
       element?.classList.add("isSelected");
+
+      setCurRegisterLink("/vendedor");
     }
   };
 
@@ -134,7 +141,16 @@ export default function Login() {
                 </p>
               </div>
               <SubmitButtonContainer>
-                <input type="submit" value="Entrar" className="submit" />
+                <input type="submit" value="ENTRAR" className="submit" />
+              </SubmitButtonContainer>
+
+              <SubmitButtonContainer>
+                <Link
+                  to={`${curRegisterLink}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="register">REGISTRAR</div>
+                </Link>
               </SubmitButtonContainer>
             </ContentPart>
           </LoginPart>

@@ -23,6 +23,7 @@ import Select from "react-select";
 import { useForm } from "react-hook-form";
 
 import { Register, UploadImage } from "../../apis";
+import { Link } from "react-router-dom";
 
 type Props = { type: number };
 
@@ -119,14 +120,8 @@ export default function Vendor(props: Props) {
     if (name === "email") {
       setEmail(target.value);
     }
-    if (name === "cpf") {
-      setCpf(target.value);
-    }
     if (name === "store") {
       setStore(target.value);
-    }
-    if (name === "cnpj") {
-      setCnpj(target.value);
     }
     if (name === "address") {
       setAddress(target.value);
@@ -193,6 +188,60 @@ export default function Vendor(props: Props) {
   const changeHandler = (e: any) => {
     setSelectedFile(e.target.files[0]);
     setIsFilePicked(true);
+  };
+
+  const handleCpfChange = (event: any) => {
+    // Get only the numbers from the data input
+    let data = event.target.value.replace(/\D/g, "");
+    // Checking data length to define if it is cpf or cnpj
+    if (data.length <= 11) {
+      // It's cpf
+      let vcpf = "";
+      let parts = Math.ceil(data.length / 3);
+      for (let i = 0; i < parts; i++) {
+        if (i === 3) {
+          vcpf += `-${data.substr(i * 3)}`;
+          break;
+        }
+        vcpf += `${i !== 0 ? "." : ""}${data.substr(i * 3, 3)}`;
+      }
+
+      // Update state
+      setCpf(vcpf);
+    }
+  };
+
+  const handleCnpjChange = (event: any) => {
+    // Get only the numbers from the data input
+    let data = event.target.value.replace(/\D/g, "");
+    // Checking data length to define if it is cpf or cnpj
+    if (data.length > 8) {
+      // It's cnpj
+      let cnpj = `${data.substr(0, 2)}.${data.substr(2, 3)}.${data.substr(
+        5,
+        3
+      )}/`;
+      if (data.length > 12)
+        cnpj += `${data.substr(8, 4)}-${data.substr(12, 2)}`;
+      else cnpj += data.substr(8);
+      // Pass formatting for the data
+      data = cnpj;
+    } else {
+      // It's cpf
+      let cpf = "";
+      cpf += `${data.substr(0, 2)}`;
+      let parts = Math.ceil((data.length - 2) / 3);
+      for (let i = 0; i < parts; i++) {
+        if (i == 0) {
+          cpf += `${i == 0 ? "." : ""}${data.substr(2, 3)}`;
+        } else if (i == 1) {
+          cpf += `.${data.substr(5, 3)}`;
+        }
+      }
+      // Pass formatting for the data
+      data = cpf;
+    }
+    setCnpj(data);
   };
 
   return (
@@ -270,13 +319,12 @@ export default function Vendor(props: Props) {
               <FormTextField
                 id="cpf"
                 {...register("cpf", { required: true, pattern: validCpfRegex })}
-                onChangeCapture={handleInputChange}
+                onChangeCapture={handleCpfChange}
+                value={cpf}
               />
               <p>
                 {errors.cpf && (
-                  <span style={{ color: "red" }}>
-                    Este campo é obrigatório.
-                  </span>
+                  <span style={{ color: "red" }}>Formato Inválido.</span>
                 )}
               </p>
             </SubFullPart>
@@ -300,11 +348,17 @@ export default function Vendor(props: Props) {
             </SubFullPart>
 
             <SubFullPart>
-              <FormLabel>CNPJ</FormLabel>
+              <FormLabel>
+                CNPJ<RedLabel>*</RedLabel>
+              </FormLabel>
               <FormTextField
                 id="cnpj"
-                {...register("cnpj", { pattern: validCnpjRegex })}
-                onChangeCapture={handleInputChange}
+                {...register("cnpj", {
+                  required: true,
+                  pattern: validCnpjRegex,
+                })}
+                onChangeCapture={handleCnpjChange}
+                value={cnpj}
               />
               <p>
                 {errors.cnpj && (
@@ -390,6 +444,7 @@ export default function Vendor(props: Props) {
                   id="condition"
                   className="formSelectField"
                   options={estados}
+                  placeholder="Selecionar"
                   {...register("condition", {
                     required: estado != null ? false : true,
                   })}
@@ -411,6 +466,7 @@ export default function Vendor(props: Props) {
                   id="city"
                   className="formSelectField"
                   options={cidades}
+                  placeholder="Selecionar"
                   {...register("city", {
                     required: city != null ? false : true,
                   })}
@@ -484,12 +540,18 @@ export default function Vendor(props: Props) {
                 <label
                   style={{
                     fontSize: "20px",
-                    width: "100%",
                     marginLeft: "20px",
                   }}
                 >
-                  Li e concordo com os Termos de Uso da plataforma.
+                  Li e concordo com os{" "}
                 </label>
+                <Link
+                  to="/termos"
+                  style={{ fontSize: "20px", marginLeft: "10px" }}
+                  target="_blank"
+                >
+                  Termos de Uso da plataforma.
+                </Link>
               </div>
 
               <p>
