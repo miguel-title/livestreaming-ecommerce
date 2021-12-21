@@ -105,6 +105,8 @@ export const BlogItemTitle = styled.div`
 
 export const BlogItemLink = styled.div`
   margin-bottom: 1.5rem;
+  font-size: 24px;
+  color: rgb(85, 85, 85);
 `;
 
 export const BlogLinkButton = styled.div`
