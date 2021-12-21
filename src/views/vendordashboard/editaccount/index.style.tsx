@@ -50,7 +50,7 @@ export const SubItemPart = styled.div`
 export const EditUserAccountSelect = styled.select`
   margin-bottom: 20px;
 
-  background: #ffffff;
+  background: #eeeeee;
   border: none;
   height: 40px;
   width: 100%;
@@ -79,14 +79,21 @@ export const SendButton = styled.div`
 
   font-size: 20px;
 
-  line-height: 70px;
-  font-size: 28px;
+  line-height: 50px;
   font-weight: 600;
 
   cursor: pointer;
 
   @media (max-width: 992px) {
-    width: 80%;
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 12px;
   }
 `;
 
