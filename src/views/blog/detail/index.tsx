@@ -110,7 +110,6 @@ export default function BlogDetail() {
   };
   useEffect(() => {
     getCurrentBlogData();
-    console.log(blogId);
   }, []);
   return (
     <CommonLayout>

@@ -22,7 +22,7 @@ import Select from "react-select";
 
 import { useForm } from "react-hook-form";
 
-import { Register } from "../../apis/index";
+import { Register } from "../../apis";
 
 type Props = { type: number };
 
@@ -335,6 +335,7 @@ export default function Vendor(props: Props) {
                 <FormLabel>Complemento</FormLabel>
                 <FormTextField
                   id="complement"
+                  name="complement"
                   onChangeCapture={handleInputChange}
                 />
               </SubPart>

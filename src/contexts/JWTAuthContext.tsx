@@ -200,7 +200,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
           // const response = await axios.post<{ user: User }>("/api/auth/me");
           // const { user } = response.data;
           const token: any = jwtDecode(accessToken);
-          console.log(token);
           const user: User = {
             email: token.email,
             userName: token.name,
