@@ -33,6 +33,8 @@ export const EditUserAccountTextField = styled.input`
   border-radius: 10px;
 
   padding-left: 15px;
+
+  background: #eeeeee;
 `;
 
 export const SubPart = styled.div``;
@@ -73,7 +75,7 @@ export const SendButton = styled.div`
   text-align: center;
   margin: auto;
 
-  height: 70px;
+  height: 50px;
 
   font-size: 20px;
 
