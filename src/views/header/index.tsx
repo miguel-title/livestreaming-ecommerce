@@ -55,7 +55,7 @@ export default function Header() {
   const handleLogout = async (): Promise<void> => {
     try {
       await logout();
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       console.error(err);
       toast.error("Unable to logout");
