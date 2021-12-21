@@ -22,6 +22,8 @@ import Select from "react-select";
 
 import { useForm } from "react-hook-form";
 
+import { Register } from "../../apis/index";
+
 type Props = { type: number };
 
 export default function Vendor(props: Props) {
@@ -145,37 +147,32 @@ export default function Vendor(props: Props) {
   };
 
   const submitData = async () => {
-    fetch("https://api.treebee.com.br/vendor/register", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: name,
-        surname: surname,
-        email: email,
-        cpf: cpf,
-        store: store,
-        cnpj: cnpj,
-        address: address,
-        number: number,
-        complement: complement,
-        neighborhood: neighborhood,
-        estado: estado,
-        city: city,
-        password: password,
-        confirmpassword: confirmPassword,
-        role: props.type,
-      }),
+    await Register({
+      name: name,
+      surname: surname,
+      email: email,
+      cpf: cpf,
+      store: store,
+      cnpj: cnpj,
+      address: address,
+      number: number,
+      complement: complement,
+      neighborhood: neighborhood,
+      estado: estado,
+      city: city,
+      password: password,
+      confirmpassword: confirmPassword,
+      role: props.type,
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           toast.info(data.message);
         } else {
           toast.error(data.message);
         }
+      })
+      .catch((err) => {
+        toast.error(err);
       });
   };
 

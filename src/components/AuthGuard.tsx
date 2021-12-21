@@ -8,7 +8,10 @@ interface AuthGuardProps {
 }
 
 const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
+  const isAuthenticated =
+    window.localStorage.getItem("accesstoken") != "" ? true : false;
+
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }

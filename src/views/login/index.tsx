@@ -55,17 +55,7 @@ export default function Login() {
   const { login } = useAuth() as any;
 
   const submitData = async () => {
-    const status = await login(email, password, role);
-
-    console.log(status);
-
-    status === 0 && toast.error("Usuario y/o Password incorrectos");
-    status === -1 && toast.error("El usuario actual está inactivo.");
-    if (role == 0) {
-      status === -2 && toast.error("Usuário não existe.");
-    } else {
-      status === -2 && toast.error("Vendedor não existe.");
-    }
+    await login(email, password, role);
   };
 
   const handleInputChange = (e: any) => {

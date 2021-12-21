@@ -4,6 +4,9 @@ import jwtDecode from "jwt-decode";
 import type { User } from "../types/user";
 import axios, { userFormeAxiosInstance } from "../utils/axios";
 
+import { Login } from "../apis/index";
+import { toast } from "react-toastify";
+
 interface AuthState {
   isInitialised: boolean;
   isAuthenticated: boolean;
@@ -14,7 +17,6 @@ interface AuthContextValue extends AuthState {
   method: "JWT";
   login: (email: string, password: string, role: number) => void;
   logout: () => void;
-  register: (email: string, name: string, password: string) => Promise<void>;
 }
 
 interface AuthProviderProps {
@@ -126,7 +128,6 @@ const AuthContext = createContext<AuthContextValue>({
   method: "JWT",
   login: () => {},
   logout: () => {},
-  register: () => Promise.resolve(),
 });
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
@@ -134,18 +135,29 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (_email: string, _password: string, _role: number) => {
     try {
-      const response = await axios.post<{
-        status: number;
-        email: string;
-        userName: string;
-        role: number;
-        token: string;
-      }>("https://api.treebee.com.br/vendor/login", {
-        email: _email,
-        password: _password,
-        role: _role,
-      });
-      const { email, role, status, token, userName } = response.data;
+      var { email, role, status, token, userName, errMsg } = {
+        email: "",
+        role: 0,
+        status: 400,
+        token: "",
+        userName: "",
+        errMsg: "",
+      };
+
+      await Login({ email: _email, password: _password, role: _role }).then(
+        (data: any) => {
+          status = data.status;
+          if (data.status == 200) {
+            email = data.email;
+            role = data.role;
+            token = data.token;
+            userName = data.userName;
+          } else {
+            errMsg = data.message;
+          }
+        }
+      );
+
       const user: User = {
         email: email,
         userName: userName,
@@ -162,46 +174,19 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         });
         return 1;
       } else if (status && status === 400) {
+        toast.error(errMsg);
         return -1;
       } else {
-        return 0;
+        return -1;
       }
     } catch {
-      return -2;
+      return -1;
     }
   };
 
   const logout = () => {
     setSession(null);
     dispatch({ type: "LOGOUT" });
-  };
-
-  const register = async (_email: string, _name: string, _password: string) => {
-    const response = await axios.post<{
-      status: string;
-      email: string;
-      userName: string;
-      role: number;
-      token: string;
-    }>("https://api.treebee.com.br/vendor/register", {
-      email: _email,
-      userName: _name,
-      password: _password,
-    });
-    const { email, userName, role, token } = response.data;
-    const user: User = {
-      email: email,
-      userName: userName,
-      role: role,
-    };
-
-    await setSession(token);
-    dispatch({
-      type: "LOGIN",
-      payload: {
-        user,
-      },
-    });
   };
 
   useEffect(() => {
@@ -259,7 +244,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         method: "JWT",
         login,
         logout,
-        register,
       }}
     >
       {children}
