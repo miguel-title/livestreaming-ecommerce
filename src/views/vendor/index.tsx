@@ -23,7 +23,8 @@ import Select from "react-select";
 import { useForm } from "react-hook-form";
 
 import { Register, UploadImage } from "../../apis";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 type Props = { type: number };
 
@@ -144,6 +145,9 @@ export default function Vendor(props: Props) {
     }
   };
 
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
   const submitData = async () => {
     // const formData = new FormData();
 
@@ -173,9 +177,11 @@ export default function Vendor(props: Props) {
       confirmpassword: confirmPassword,
       role: props.type,
     })
-      .then((data: any) => {
+      .then(async (data: any) => {
         if (data.status === 200) {
           toast.info(data.message);
+          await logout();
+          navigate("/login");
         } else {
           toast.error(data.message);
         }
