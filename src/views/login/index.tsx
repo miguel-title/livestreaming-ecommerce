@@ -60,8 +60,12 @@ export default function Login() {
     console.log(status);
 
     status === 0 && toast.error("Usuario y/o Password incorrectos");
-
     status === -1 && toast.error("El usuario actual está inactivo.");
+    if (role == 0) {
+      status === -2 && toast.error("Usuário não existe.");
+    } else {
+      status === -2 && toast.error("Vendedor não existe.");
+    }
   };
 
   const handleInputChange = (e: any) => {

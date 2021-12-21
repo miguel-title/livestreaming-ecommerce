@@ -133,37 +133,41 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialAuthState);
 
   const login = async (_email: string, _password: string, _role: number) => {
-    const response = await axios.post<{
-      status: number;
-      email: string;
-      userName: string;
-      role: number;
-      token: string;
-    }>("https://api.treebee.com.br/vendor/login", {
-      email: _email,
-      password: _password,
-      role: _role,
-    });
-    const { email, role, status, token, userName } = response.data;
-    const user: User = {
-      email: email,
-      userName: userName,
-      role: role,
-    };
-
-    if (status && status === 200) {
-      await setSession(token);
-      dispatch({
-        type: "LOGIN",
-        payload: {
-          user,
-        },
+    try {
+      const response = await axios.post<{
+        status: number;
+        email: string;
+        userName: string;
+        role: number;
+        token: string;
+      }>("https://api.treebee.com.br/vendor/login", {
+        email: _email,
+        password: _password,
+        role: _role,
       });
-      return 1;
-    } else if (status && status === 400) {
-      return -1;
-    } else {
-      return 0;
+      const { email, role, status, token, userName } = response.data;
+      const user: User = {
+        email: email,
+        userName: userName,
+        role: role,
+      };
+
+      if (status && status === 200) {
+        await setSession(token);
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            user,
+          },
+        });
+        return 1;
+      } else if (status && status === 400) {
+        return -1;
+      } else {
+        return 0;
+      }
+    } catch {
+      return -2;
     }
   };
 
