@@ -12,7 +12,8 @@ export const CustomLoadingWrapper = styled.div`
   position: fixed;
   z-index: 99999;
   //background: rgba(0, 0, 0, 0.7);
-  background:#c5b097;
+  /* background:#c5b097; */
+  background:rgba(197, 176, 151, 0.7)
   flex-direction: column;
 `;
 export const CustomLoadingContent = styled.div`
