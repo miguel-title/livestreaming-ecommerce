@@ -75,7 +75,7 @@ export default function Header() {
     try {
       const accessToken: any = window.localStorage.getItem("accessToken");
       const decoded: any = jwtDecode(accessToken);
-      console.log(decoded.avataUrl);
+      console.log(decoded);
       if (decoded.avataUrl == "" || typeof decoded.avataUrl == "undefined") {
         setProfileImg("/user-profile.png");
       } else {
