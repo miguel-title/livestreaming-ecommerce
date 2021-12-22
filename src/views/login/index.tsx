@@ -112,7 +112,7 @@ export default function Login() {
                     required: true,
                   })}
                   onChangeCapture={handleInputChange}
-                  placeholder="Usuario"
+                  placeholder="E-mail"
                   value={email}
                 />
                 <p>

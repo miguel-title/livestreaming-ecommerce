@@ -169,7 +169,7 @@ export default function Header() {
                 {showMenu ? (
                   <div className="menu" ref={inputRef}>
                     <div className="item" onClick={handleLogout}>
-                      Logout
+                      Sair
                     </div>
                   </div>
                 ) : null}
