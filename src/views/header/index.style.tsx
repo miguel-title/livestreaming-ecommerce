@@ -230,5 +230,5 @@ export const ProfileImage = styled.img`
   height: 50px;
 
   border-radius: 50%;
-  border: 2px solid;
+  border: 3px solid;
 `;
