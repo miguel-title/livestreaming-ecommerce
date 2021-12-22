@@ -27,7 +27,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    margin-top: 50px;
+    margin-top: 60px;
 
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 
