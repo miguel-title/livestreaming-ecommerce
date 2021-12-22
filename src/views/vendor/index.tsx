@@ -262,95 +262,100 @@ export default function Vendor(props: Props) {
             {props.type == 0 ? "Cadastro de Vendedor" : "Cadastro de Comprador"}
           </Title>
           <FormPart onSubmit={handleSubmit(submitData)}>
-            <SubPart className="ImagePart">
-              <FormLabel>Image</FormLabel>
-              <div
-                style={{
-                  width: "200px",
-                  height: "200px",
-                  backgroundColor: "#eeeeee",
-                }}
-              >
+            {props.type == 0 && (
+              <SubPart className="ImagePart">
+                <FormLabel>Image</FormLabel>
                 <div
                   style={{
-                    height: "100%",
-                    width: "100%",
-                    position: "relative",
+                    width: "200px",
+                    height: "200px",
+                    backgroundColor: "#eeeeee",
                   }}
                 >
-                  <input
-                    type="file"
-                    name="image"
+                  <div
                     style={{
-                      width: "100%",
                       height: "100%",
-                      background: "red",
-                      left: 0,
-                      top: 0,
-                      position: "absolute",
-                      opacity: 0,
-                      zIndex: 99999,
+                      width: "100%",
+                      position: "relative",
                     }}
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files.length > 0) {
-                        changeHandler(e);
-                        setSelectedImageUrl(
-                          URL.createObjectURL(e.target.files[0])
-                        );
-                      }
-                    }}
-                  />
-                  {/* <Field /> */}
-                  <img
-                    src={selectedImageUrl}
-                    style={{
-                      width: "200px",
-                      height: "200px",
-                      position: "absolute",
-                      left: "0",
-                      top: "0",
-                    }}
-                    alt=""
-                  />
+                  >
+                    <input
+                      type="file"
+                      name="image"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        background: "red",
+                        left: 0,
+                        top: 0,
+                        position: "absolute",
+                        opacity: 0,
+                        zIndex: 99999,
+                      }}
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files.length > 0) {
+                          changeHandler(e);
+                          setSelectedImageUrl(
+                            URL.createObjectURL(e.target.files[0])
+                          );
+                        }
+                      }}
+                    />
+                    {/* <Field /> */}
+                    <img
+                      src={selectedImageUrl}
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        position: "absolute",
+                        left: "0",
+                        top: "0",
+                      }}
+                      alt=""
+                    />
+                  </div>
                 </div>
-              </div>
-            </SubPart>
-            <SubFullPart>
-              <FormLabel>
-                Nome<RedLabel>*</RedLabel>
-              </FormLabel>
-              <FormTextField
-                id="name"
-                {...register("name", { required: true })}
-                onChangeCapture={handleInputChange}
-              />
-              <p>
-                {errors.name && (
-                  <span style={{ color: "red" }}>
-                    Este campo é obrigatório.
-                  </span>
-                )}
-              </p>
-            </SubFullPart>
+              </SubPart>
+            )}
 
-            <SubFullPart>
-              <FormLabel>
-                Sobrenome<RedLabel>*</RedLabel>
-              </FormLabel>
-              <FormTextField
-                id="surname"
-                {...register("surname", { required: true })}
-                onChangeCapture={handleInputChange}
-              />
-              <p>
-                {errors.surname && (
-                  <span style={{ color: "red" }}>
-                    Este campo é obrigatório.
-                  </span>
-                )}
-              </p>
-            </SubFullPart>
-
+            {props.type == 1 && (
+              <>
+                <SubFullPart>
+                  <FormLabel>
+                    Nome<RedLabel>*</RedLabel>
+                  </FormLabel>
+                  <FormTextField
+                    id="name"
+                    {...register("name", { required: props.type == 1 })}
+                    onChangeCapture={handleInputChange}
+                  />
+                  <p>
+                    {errors.name && (
+                      <span style={{ color: "red" }}>
+                        Este campo é obrigatório.
+                      </span>
+                    )}
+                  </p>
+                </SubFullPart>
+                <SubFullPart>
+                  <FormLabel>
+                    Sobrenome<RedLabel>*</RedLabel>
+                  </FormLabel>
+                  <FormTextField
+                    id="surname"
+                    {...register("surname", { required: props.type == 1 })}
+                    onChangeCapture={handleInputChange}
+                  />
+                  <p>
+                    {errors.surname && (
+                      <span style={{ color: "red" }}>
+                        Este campo é obrigatório.
+                      </span>
+                    )}
+                  </p>
+                </SubFullPart>
+              </>
+            )}
             <SubFullPart>
               <FormLabel>
                 E-mail<RedLabel>*</RedLabel>
@@ -372,22 +377,27 @@ export default function Vendor(props: Props) {
               </p>
             </SubFullPart>
 
-            <SubFullPart>
-              <FormLabel>
-                CPF<RedLabel>*</RedLabel>
-              </FormLabel>
-              <FormTextField
-                id="cpf"
-                {...register("cpf", { required: true, pattern: validCpfRegex })}
-                onChangeCapture={handleCpfChange}
-                value={cpf}
-              />
-              <p>
-                {errors.cpf && (
-                  <span style={{ color: "red" }}>Formato Inválido.</span>
-                )}
-              </p>
-            </SubFullPart>
+            {props.type == 1 && (
+              <SubFullPart>
+                <FormLabel>
+                  CPF<RedLabel>*</RedLabel>
+                </FormLabel>
+                <FormTextField
+                  id="cpf"
+                  {...register("cpf", {
+                    required: props.type == 1,
+                    pattern: validCpfRegex,
+                  })}
+                  onChangeCapture={handleCpfChange}
+                  value={cpf}
+                />
+                <p>
+                  {errors.cpf && (
+                    <span style={{ color: "red" }}>Formato Inválido.</span>
+                  )}
+                </p>
+              </SubFullPart>
+            )}
 
             <SubFullPart>
               <FormLabel>
