@@ -32,7 +32,6 @@ export const HeaderWrapper = styled.div`
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 
     .item {
-      margin-top: 5px;
       color: #fff;
       background-color: #e8b89b;
       padding: 10px;
