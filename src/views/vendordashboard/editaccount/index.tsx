@@ -468,7 +468,6 @@ export default function EditAccount() {
             {...register("name", { required: CpfSelected && name == "" })}
             defaultValue={accountInfo.name}
             onChangeCapture={handleInputChange}
-            value={cnpj}
           />
           <p className="cpf-relative">
             {errors.name && (
