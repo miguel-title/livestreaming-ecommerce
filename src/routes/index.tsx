@@ -201,6 +201,12 @@ const routes: RouteItem[] = [
   {
     exact: true,
     path: "/termos",
+    component: lazy(() => import("../views/term")),
+  },
+
+  {
+    exact: true,
+    path: "/politicas",
     component: lazy(() => import("../views/policy")),
   },
 ];
