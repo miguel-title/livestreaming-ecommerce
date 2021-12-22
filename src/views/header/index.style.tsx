@@ -228,4 +228,7 @@ export const OverLay = styled.div`
 export const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
+
+  border-radius: 50%;
+  border: 2px solid;
 `;
