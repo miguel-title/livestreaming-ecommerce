@@ -52,6 +52,9 @@ export default function Vendor(props: Props) {
   const [selectedFile, setSelectedFile] = useState<any>();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
+  const [selectedImageUrl, setSelectedImageUrl] =
+    useState<string>("/thumb.png");
+
   const onConditionChange = (e: any) => {
     setEstado(e.value);
     setCurEstado(e.value);
@@ -149,15 +152,16 @@ export default function Vendor(props: Props) {
   const { logout } = useAuth();
 
   const submitData = async () => {
-    // const formData = new FormData();
+    const formData = new FormData();
 
-    // formData.append("File", selectedFile);
+    formData.append("file", selectedFile);
+
     var avataUrl = "";
-    // await UploadImage(formData)
-    //   .then((data: any) => (avataUrl = data.avataUrl))
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    await UploadImage(formData)
+      .then((data: any) => (avataUrl = data.url))
+      .catch((err) => {
+        console.log(err);
+      });
 
     await Register({
       avata: avataUrl,
@@ -258,9 +262,59 @@ export default function Vendor(props: Props) {
             {props.type == 0 ? "Cadastro de Vendedor" : "Cadastro de Comprador"}
           </Title>
           <FormPart onSubmit={handleSubmit(submitData)}>
-            {/* <SubPart>
-              <input type="file" name="image" onChange={changeHandler} />
-            </SubPart> */}
+            <SubPart className="ImagePart">
+              <FormLabel>Image</FormLabel>
+              <div
+                style={{
+                  width: "200px",
+                  height: "200px",
+                  backgroundColor: "#eeeeee",
+                }}
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  <input
+                    type="file"
+                    name="image"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      background: "red",
+                      left: 0,
+                      top: 0,
+                      position: "absolute",
+                      opacity: 0,
+                      zIndex: 99999,
+                    }}
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files.length > 0) {
+                        changeHandler(e);
+                        setSelectedImageUrl(
+                          URL.createObjectURL(e.target.files[0])
+                        );
+                      }
+                    }}
+                  />
+                  {/* <Field /> */}
+                  <img
+                    src={selectedImageUrl}
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      position: "absolute",
+                      left: "0",
+                      top: "0",
+                    }}
+                    alt=""
+                  />
+                </div>
+              </div>
+            </SubPart>
             <SubFullPart>
               <FormLabel>
                 Nome<RedLabel>*</RedLabel>

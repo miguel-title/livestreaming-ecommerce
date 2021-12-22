@@ -27,7 +27,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    margin-top: 35px;
+    margin-top: 50px;
 
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 
@@ -223,4 +223,9 @@ export const OverLay = styled.div`
   position: fixed;
 
   top: 0;
+`;
+
+export const ProfileImage = styled.img`
+  width: 50px;
+  height: 50px;
 `;

@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 
 import { Title } from "../../../components/pagedefault";
 
-import { GetAccountInfo, UpdateAccount } from "../../../apis";
+import { GetAccountInfo, UpdateAccount, UploadImage } from "../../../apis";
 
 import data from "../../../assets/data.json";
 
@@ -32,6 +32,7 @@ import {
 import { idText } from "typescript";
 import { Navigate, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import { url } from "inspector";
 
 export default function EditAccount() {
   const [accountInfo, setAccountInfo] = useState<any>({});
@@ -57,6 +58,9 @@ export default function EditAccount() {
 
   const [vestado, setVEstado] = useState<any>();
   const [vcity, setVCity] = useState<any>({});
+
+  const [selectedFile, setSelectedFile] = useState<any>();
+  const [isFilePicked, setIsFilePicked] = useState(false);
 
   const onConditionChange = (e: any) => {
     setEstado(e.value);
@@ -142,6 +146,8 @@ export default function EditAccount() {
   const validCpfRegex = RegExp(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/);
   const validCnpjRegex = RegExp(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/);
 
+  const [selectedImageUrl, setSelectedImageUrl] =
+    useState<string>("/thumb.png");
   const {
     register,
     handleSubmit,
@@ -189,10 +195,24 @@ export default function EditAccount() {
   const { logout } = useAuth();
 
   const submitData = async () => {
+    const formData = new FormData();
+
+    formData.append("file", selectedFile);
+    var avataUrl = "";
+    await UploadImage(formData)
+      .then((data: any) => (avataUrl = data.url))
+      .catch((err) => {
+        console.log(err);
+      });
+
+    if (avataUrl == "") {
+      avataUrl = selectedImageUrl;
+    }
     const accessToken: any = window.localStorage.getItem("accessToken");
     const decoded: any = jwtDecode(accessToken);
     await UpdateAccount({
       id: decoded.id,
+      avata: avataUrl,
       name: name,
       surname: surname,
       email: email,
@@ -240,6 +260,7 @@ export default function EditAccount() {
     setVCity({ value: accountInfo.city, label: accountInfo.city });
 
     //initialize
+    setSelectedImageUrl(accountInfo.avata);
     setName(accountInfo.name);
     setSurname(accountInfo.surname);
     setEmail(accountInfo.email);
@@ -305,16 +326,73 @@ export default function EditAccount() {
     setCnpj(data);
   };
 
+  const changeHandler = (e: any) => {
+    setSelectedFile(e.target.files[0]);
+    setIsFilePicked(true);
+  };
+
   return (
     <EditUserAccountContainer>
       <Title>Editar dados da conta</Title>
 
       <EditUserAccountFormPart onSubmit={handleSubmit(submitData)}>
         <SubPart>
-          <EditUserAccountLabel>
-            Imagem da Loja (200px x 200px)*
-          </EditUserAccountLabel>
-          <FileUpload></FileUpload>
+          <SubPart className="ImagePart">
+            <EditUserAccountLabel>
+              Imagem da Loja (200px x 200px)
+              <span style={{ color: "red", fontWeight: "400" }}>*</span>
+            </EditUserAccountLabel>
+            <div
+              style={{
+                width: "200px",
+                height: "200px",
+                backgroundColor: "#eeeeee",
+              }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  position: "relative",
+                }}
+              >
+                <input
+                  type="file"
+                  name="image"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    background: "red",
+                    left: 0,
+                    top: 0,
+                    position: "absolute",
+                    opacity: 0,
+                    zIndex: 99999,
+                  }}
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files.length > 0) {
+                      changeHandler(e);
+                      setSelectedImageUrl(
+                        URL.createObjectURL(e.target.files[0])
+                      );
+                    }
+                  }}
+                />
+                {/* <Field /> */}
+                <img
+                  src={selectedImageUrl}
+                  style={{
+                    width: "200px",
+                    height: "200px",
+                    position: "absolute",
+                    left: "0",
+                    top: "0",
+                  }}
+                  alt=""
+                />
+              </div>
+            </div>
+          </SubPart>
         </SubPart>
         <SubPart>
           <RadioButtonsContainer>

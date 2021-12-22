@@ -71,8 +71,16 @@ export const SubPart = styled.div`
 
   margin-top: 30px;
 
+  &.ImagePart {
+    width: 200px;
+  }
+
   @media (max-width: 992px) {
     width: 100%;
+
+    &.ImagePart {
+      width: 200px;
+    }
   }
 `;
 

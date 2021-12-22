@@ -24,13 +24,17 @@ import {
   MobileMenuContent,
   MobileMenuLogoImg,
   OverLay,
+  ProfileImage,
 } from "./index.style";
 
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import ReactTooltip from "react-tooltip";
+import jwtDecode from "jwt-decode";
 
 export default function Header() {
+  const [profileImg, setProfileImg] = useState<string>("");
+
   const showMobileMenu = () => {
     var element = document.querySelector(".mobile-menu");
     element?.classList.add("visible");
@@ -68,6 +72,19 @@ export default function Header() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
+    try {
+      const accessToken: any = window.localStorage.getItem("accessToken");
+      const decoded: any = jwtDecode(accessToken);
+      console.log(decoded.avataUrl);
+      if (decoded.avataUrl == "" || typeof decoded.avataUrl == "undefined") {
+        setProfileImg("/user-profile.png");
+      } else {
+        setProfileImg(decoded.avataUrl);
+      }
+    } catch (err) {
+      setProfileImg("/user-profile.png");
+    }
+
     const checkIfClickedOutside = (e: any) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
@@ -123,7 +140,7 @@ export default function Header() {
             {isAuthenticated == false ? (
               <Link to="/login">
                 <UserButton>
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="35"
                     height="35"
@@ -136,7 +153,8 @@ export default function Header() {
                       fillRule="evenodd"
                       d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
                     ></path>
-                  </svg>
+                  </svg> */}
+                  <ProfileImage src={profileImg} />
                 </UserButton>
               </Link>
             ) : (
@@ -146,20 +164,7 @@ export default function Header() {
                   data-tip
                   data-for="avatar-tip"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                    style={{ verticalAlign: "middle" }}
-                  >
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                    <path
-                      fillRule="evenodd"
-                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                    ></path>
-                  </svg>
+                  <ProfileImage src={profileImg} />
                 </UserButton>
                 {showMenu ? (
                   <div className="menu" ref={inputRef}>
@@ -168,9 +173,9 @@ export default function Header() {
                     </div>
                   </div>
                 ) : null}
-                <ReactTooltip id="avatar-tip">
+                {/* <ReactTooltip id="avatar-tip">
                   <span>{user?.userName}</span>
-                </ReactTooltip>
+                </ReactTooltip> */}
               </>
             )}
           </UserAction>
