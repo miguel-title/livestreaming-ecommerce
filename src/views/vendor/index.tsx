@@ -269,7 +269,6 @@ export default function Vendor(props: Props) {
                   style={{
                     width: "200px",
                     height: "200px",
-                    backgroundColor: "#eeeeee",
                   }}
                 >
                   <div
