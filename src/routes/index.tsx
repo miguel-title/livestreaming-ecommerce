@@ -197,6 +197,12 @@ const routes: RouteItem[] = [
     path: "/blog/:blogId",
     component: lazy(() => import("../views/blog/detail")),
   },
+
+  {
+    exact: true,
+    path: "/termos",
+    component: lazy(() => import("../views/policy")),
+  },
 ];
 
 export default routes;
