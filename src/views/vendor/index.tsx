@@ -557,7 +557,7 @@ export default function Vendor(props: Props) {
 
             <SubFullPart>
               <FormLabel>
-                senha<RedLabel>*</RedLabel>
+                Senha<RedLabel>*</RedLabel>
               </FormLabel>
               <FormTextField
                 id="password"
