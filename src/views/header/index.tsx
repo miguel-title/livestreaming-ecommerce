@@ -70,6 +70,16 @@ export default function Header() {
     setShowMenu(!showMenu);
   };
 
+  const handleDashboard = async (): Promise<void> => {
+    const accessToken: any = window.localStorage.getItem("accessToken");
+    const token: any = jwtDecode(accessToken);
+    if (token.role == 0) {
+      navigate("/vendor-dashboard");
+    } else {
+      navigate("/painel-usuario");
+    }
+  };
+
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     try {
@@ -168,6 +178,9 @@ export default function Header() {
                 </UserButton>
                 {showMenu ? (
                   <div className="menu" ref={inputRef}>
+                    <div className="item" onClick={handleDashboard}>
+                      Painel
+                    </div>
                     <div className="item" onClick={handleLogout}>
                       Sair
                     </div>
