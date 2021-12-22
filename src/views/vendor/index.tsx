@@ -398,61 +398,65 @@ export default function Vendor(props: Props) {
               </SubFullPart>
             )}
 
-            <SubFullPart>
-              <FormLabel>
-                Nome da Loja<RedLabel>*</RedLabel>
-              </FormLabel>
-              <FormTextField
-                id="store"
-                {...register("store", { required: true })}
-                onChangeCapture={handleInputChange}
-              />
-              <p>
-                {errors.store && (
-                  <span style={{ color: "red" }}>
-                    Este campo é obrigatório.
-                  </span>
-                )}
-              </p>
-            </SubFullPart>
+            {props.type == 0 && (
+              <>
+                <SubFullPart>
+                  <FormLabel>
+                    Nome da Loja<RedLabel>*</RedLabel>
+                  </FormLabel>
+                  <FormTextField
+                    id="store"
+                    {...register("store", { required: props.type == 0 })}
+                    onChangeCapture={handleInputChange}
+                  />
+                  <p>
+                    {errors.store && (
+                      <span style={{ color: "red" }}>
+                        Este campo é obrigatório.
+                      </span>
+                    )}
+                  </p>
+                </SubFullPart>
 
-            <SubFullPart>
-              <FormLabel>
-                CNPJ<RedLabel>*</RedLabel>
-              </FormLabel>
-              <FormTextField
-                id="cnpj"
-                {...register("cnpj", {
-                  required: true,
-                  pattern: validCnpjRegex,
-                })}
-                onChangeCapture={handleCnpjChange}
-                value={cnpj}
-              />
-              <p>
-                {errors.cnpj && (
-                  <span style={{ color: "red" }}>Formato Inválido.</span>
-                )}
-              </p>
-            </SubFullPart>
+                <SubFullPart>
+                  <FormLabel>
+                    CNPJ<RedLabel>*</RedLabel>
+                  </FormLabel>
+                  <FormTextField
+                    id="cnpj"
+                    {...register("cnpj", {
+                      required: true,
+                      pattern: validCnpjRegex,
+                    })}
+                    onChangeCapture={handleCnpjChange}
+                    value={cnpj}
+                  />
+                  <p>
+                    {errors.cnpj && (
+                      <span style={{ color: "red" }}>Formato Inválido.</span>
+                    )}
+                  </p>
+                </SubFullPart>
 
-            <SubFullPart>
-              <FormLabel>
-                Endereço<RedLabel>*</RedLabel>
-              </FormLabel>
-              <FormTextField
-                id="address"
-                {...register("address", { required: true })}
-                onChangeCapture={handleInputChange}
-              />
-              <p>
-                {errors.address && (
-                  <span style={{ color: "red" }}>
-                    Este campo é obrigatório.
-                  </span>
-                )}
-              </p>
-            </SubFullPart>
+                <SubFullPart>
+                  <FormLabel>
+                    Endereço<RedLabel>*</RedLabel>
+                  </FormLabel>
+                  <FormTextField
+                    id="address"
+                    {...register("address", { required: props.type == 0 })}
+                    onChangeCapture={handleInputChange}
+                  />
+                  <p>
+                    {errors.address && (
+                      <span style={{ color: "red" }}>
+                        Este campo é obrigatório.
+                      </span>
+                    )}
+                  </p>
+                </SubFullPart>
+              </>
+            )}
 
             <SubPartContainer>
               <SubPart>
