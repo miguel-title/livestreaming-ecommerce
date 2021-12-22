@@ -260,7 +260,11 @@ export default function EditAccount() {
     setVCity({ value: accountInfo.city, label: accountInfo.city });
 
     //initialize
-    setSelectedImageUrl(accountInfo.avata);
+    if (accountInfo.avata == "" || accountInfo.avata == null) {
+      setSelectedImageUrl("/thumb.png");
+    } else {
+      setSelectedImageUrl(accountInfo.avata);
+    }
     setName(accountInfo.name);
     setSurname(accountInfo.surname);
     setEmail(accountInfo.email);
