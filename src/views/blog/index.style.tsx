@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const BlogViewWrapper = styled.div`
-  background-color: #ffffff;
+  background-color: #c5b0971a;
 
   padding: 3rem 0;
 
-  margin: 100px 0;
+  margin: 100px 0 0 0;
 `;
 
 export const BlogViewContainer = styled.div`

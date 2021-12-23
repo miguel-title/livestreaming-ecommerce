@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 
-import Header from "../header";
+import Footer from "../../footer";
+
+import { AdminRegister } from "../../../apis";
+
 import {
   InputPart,
   LoginWidgetContainer,
   LoginWrapper,
-  TabContainer,
-  TabPart,
   LoginPart,
   LogoPart,
   LogoContainer,
@@ -14,54 +17,14 @@ import {
   ContentPart,
 } from "./index.style";
 
-import { useForm } from "react-hook-form";
-
-import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
-
 export default function Login() {
-  const [role, setRole] = useState<number>(1); //User
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const [curRegisterLink, setCurRegisterLink] = useState<string>("/cliente");
-
-  const handleChangeRole = (role: number) => {
-    setRole(role);
-
-    setEmail("");
-    setPassword("");
-
-    if (role == 1) {
-      var element = document.querySelector(".Role1");
-      element?.classList.add("isSelected");
-
-      var element = document.querySelector(".Role2");
-      element?.classList.remove("isSelected");
-
-      setCurRegisterLink("/cliente");
-    } else if (role == 0) {
-      var element = document.querySelector(".Role1");
-      element?.classList.remove("isSelected");
-
-      var element = document.querySelector(".Role2");
-      element?.classList.add("isSelected");
-
-      setCurRegisterLink("/vendedor");
-    }
-  };
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const { login } = useAuth() as any;
-
-  const submitData = async () => {
-    await login(email, password, role);
-  };
+  //validation
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
 
   const handleInputChange = (e: any) => {
     const target = e.target;
@@ -76,27 +39,26 @@ export default function Login() {
     }
   };
 
-  //validation
-  const validEmailRegex = RegExp(
-    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-  );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { login } = useAuth() as any;
+
+  const submitData = async () => {
+    await AdminRegister().then(async (res: any) => {
+      if (res.status == 200) {
+        await login(email, password, 2);
+      }
+    });
+  };
 
   return (
     <>
-      <Header />
       <LoginWrapper>
         <LoginWidgetContainer>
-          <TabContainer>
-            <TabPart
-              className="Role1 isSelected"
-              onClick={() => handleChangeRole(1)}
-            >
-              Comprador
-            </TabPart>
-            <TabPart className="Role2" onClick={() => handleChangeRole(0)}>
-              Vendedor
-            </TabPart>
-          </TabContainer>
           <LoginPart onSubmit={handleSubmit(submitData)}>
             <ContentPart>
               <LogoContainer>
@@ -141,19 +103,11 @@ export default function Login() {
               <SubmitButtonContainer>
                 <input type="submit" value="ENTRAR" className="submit" />
               </SubmitButtonContainer>
-
-              <SubmitButtonContainer>
-                <Link
-                  to={`${curRegisterLink}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <div className="register">REGISTRAR</div>
-                </Link>
-              </SubmitButtonContainer>
             </ContentPart>
           </LoginPart>
         </LoginWidgetContainer>
       </LoginWrapper>
+      <Footer />
     </>
   );
 }

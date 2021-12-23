@@ -29,7 +29,6 @@ import {
 
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
-import ReactTooltip from "react-tooltip";
 import jwtDecode from "jwt-decode";
 
 export default function Header() {

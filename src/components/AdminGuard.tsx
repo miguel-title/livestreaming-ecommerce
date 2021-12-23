@@ -3,33 +3,28 @@ import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import useAuth from "../hooks/useAuth";
 
-interface AuthGuardProps {
+interface AdminGuardProps {
   children?: ReactNode;
 }
 
-const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
-  // const { isAuthenticated } = useAuth();
-
-  // if (isAuthenticated == true) {
-  //   return <>{children}</>;
-  // } else {
+const AdminGuard: FC<AdminGuardProps> = ({ children }) => {
+  // const { isAuthenticated, user } = useAuth();
 
   if (window.localStorage.getItem("accessToken") != null) {
     const isAuthenticate =
       window.localStorage.getItem("accessToken") != "" ? true : false;
 
     if (!isAuthenticate) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/admin/login" />;
     }
     return <>{children}</>;
   } else {
-    return <Navigate to="/login" />;
+    return <Navigate to="/admin/login" />;
   }
-  // }
 };
 
-AuthGuard.propTypes = {
+AdminGuard.propTypes = {
   children: PropTypes.node,
 };
 
-export default AuthGuard;
+export default AdminGuard;

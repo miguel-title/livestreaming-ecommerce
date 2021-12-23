@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const LoginWrapper = styled.div`
   height: calc(100vh - 130px);
   background: #c5b0971a;
-  margin-top: 130px;
 
   display: flex;
   align-items: center;
@@ -23,44 +22,6 @@ export const LoginWidgetContainer = styled.div`
 
   @media (max-width: 526px) {
     width: 350px;
-  }
-`;
-
-export const TabContainer = styled.div`
-  display: flex;
-
-  width: 80%;
-  height: 50px;
-  font-size: 24px;
-
-  @media (max-width: 526px) {
-    font-size: 18px;
-    height: 40px;
-  }
-`;
-
-export const TabPart = styled.div`
-  width: 50%;
-  height: 100%;
-
-  text-align: center;
-  border-radius: 10px 10px 0 0;
-  box-shadow: rgb(0 0 0 / 10%) 0 -10px 12px;
-
-  line-height: 50px;
-  color: #e8b89b;
-
-  cursor: pointer;
-
-  &.isSelected {
-    color: white;
-    background-color: #e8b89b;
-
-    box-shadow: rgb(0 0 0 / 10%) 0 10px 12px;
-  }
-
-  @media (max-width: 526px) {
-    line-height: 40px;
   }
 `;
 
@@ -90,7 +51,7 @@ export const InputPart = styled.input`
 `;
 
 export const LogoContainer = styled.div`
-  width: 150px;
+  width: 250px;
 
   margin-bottom: 30px;
 `;
@@ -115,6 +76,8 @@ export const SubmitButtonContainer = styled.div`
 
     line-height: 50px;
     font-weight: 600;
+
+    cursor: pointer;
 
     margin-top: 10px;
     margin-bottom: 10px;

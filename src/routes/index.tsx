@@ -6,7 +6,11 @@ import LoadingScreen from "../components/loadingscreen";
 import MainGuard from "../components/MainGuard";
 import GuestGuard from "../components/GuestGuard";
 import AuthGuard from "../components/AuthGuard";
+import AdminGuard from "../components/AdminGuard";
+import AdminGuestGuard from "../components/AdminGuestGuard";
+
 import VendorDashboard from "../layout/vendordashboard";
+import AdminDashboard from "../layout/admindashboard";
 
 import NotFound from "../views/page404";
 
@@ -208,6 +212,50 @@ const routes: RouteItem[] = [
     exact: true,
     path: "/politicas",
     component: lazy(() => import("../views/policy")),
+  },
+
+  {
+    exact: true,
+    path: "/admin",
+    guard: AdminGuard,
+    component: lazy(() => import("../views/admin/login")),
+  },
+
+  {
+    exact: true,
+    path: "/admin/login",
+    guard: AdminGuestGuard,
+    component: lazy(() => import("../views/admin/login")),
+  },
+
+  {
+    exact: true,
+    path: "/admin/dashboard",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/dashboard")),
+  },
+
+  {
+    exact: true,
+    path: "/admin/blog",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/blog")),
+  },
+  {
+    exact: true,
+    path: "admin/blog/edit",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/blog/edit")),
+  },
+  {
+    exact: true,
+    path: "admin/blog/edit/:blogId",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/blog/edit")),
   },
 ];
 
