@@ -9,14 +9,19 @@ interface AuthGuardProps {
 
 const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
   // const { isAuthenticated } = useAuth();
-  const isAuthenticated =
+
+  console.log(window.localStorage.getItem("accesstoken"), "accesstoken");
+  // if (isAuthenticated == true) {
+  //   return <>{children}</>;
+  // } else {
+  const isAuthenticate =
     window.localStorage.getItem("accesstoken") != "" ? true : false;
 
-  if (!isAuthenticated) {
+  if (!isAuthenticate) {
     return <Navigate to="/login" />;
   }
-
   return <>{children}</>;
+  // }
 };
 
 AuthGuard.propTypes = {

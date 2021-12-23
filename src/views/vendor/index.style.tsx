@@ -19,6 +19,10 @@ export const FormPart = styled.form`
     padding-left: 15px;
     font-size: 20px;
   }
+
+  .invisible {
+    display: none;
+  }
 `;
 
 export const SubmitButtonContainer = styled.div`
@@ -125,4 +129,89 @@ export const Title = styled.div`
 
 export const RedLabel = styled.label`
   color: red;
+`;
+
+export const RadioButtonContainer = styled.div`
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  margin-right: 50px;
+
+  display: flex;
+
+  align-items: center;
+`;
+
+export const RadioButtonLabel = styled.label`
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #bebebe;
+`;
+
+export const RadioButton = styled.input`
+  opacity: 0;
+  z-index: 1;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  &:hover ~ ${RadioButtonLabel} {
+    background: #bebebe;
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      margin: 6px;
+      background: #eeeeee;
+    }
+  }
+  ${(props) =>
+    props.checked &&
+    ` 
+  &:checked + ${RadioButtonLabel} {
+    background: #e8b89b;
+    border: 1px solid #e8b89b;
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      margin: 6px;
+      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+  }
+`}
+`;
+
+export const RadioButtonsContainer = styled.div`
+  display: flex;
+`;
+
+export const DescriptionLabel = styled.div`
+  font-size: 20px;
+`;
+
+export const EditUserAccountTextField = styled.input`
+  margin-bottom: 20px;
+
+  border: none;
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 10px;
+
+  padding-left: 15px;
+
+  background: #fff;
+
+  font-size: 20px;
+  height: 40px;
 `;

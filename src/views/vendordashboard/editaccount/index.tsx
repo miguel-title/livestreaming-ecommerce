@@ -44,12 +44,13 @@ export default function EditAccount() {
   const [surname, setSurname] = useState(null);
   const [email, setEmail] = useState(null);
   const [cpf, setCpf] = useState<string>();
-  const [store, setStore] = useState(null);
+  const [store, setStore] = useState<string>("");
   const [cnpj, setCnpj] = useState<string>();
   const [address, setAddress] = useState(null);
   const [number, setNumber] = useState(null);
   const [complement, setComplement] = useState(null);
   const [neighborhood, setNeighborhood] = useState(null);
+  const [social, setSocial] = useState(null);
   const [estado, setEstado] = useState(null);
   const [city, setCity] = useState(null);
   const [password, setPassword] = useState(null);
@@ -182,7 +183,9 @@ export default function EditAccount() {
     if (name === "neighborhood") {
       setNeighborhood(target.value);
     }
-
+    if (name === "social") {
+      setSocial(target.value);
+    }
     if (name === "password") {
       setPassword(target.value);
     }
@@ -210,6 +213,7 @@ export default function EditAccount() {
     }
     const accessToken: any = window.localStorage.getItem("accessToken");
     const decoded: any = jwtDecode(accessToken);
+
     await UpdateAccount({
       id: decoded.id,
       avata: avataUrl,
@@ -218,6 +222,7 @@ export default function EditAccount() {
       email: email,
       cpf: cpf,
       store: store,
+      social: social,
       cnpj: cnpj,
       address: address,
       number: number,
@@ -225,6 +230,7 @@ export default function EditAccount() {
       neighborhood: neighborhood,
       estado: vestado.value,
       city: vcity.value,
+      isCpf: CpfSelected ? 1 : 0,
       role: 0,
     })
       .then(async (data: any) => {
@@ -274,6 +280,33 @@ export default function EditAccount() {
     setNumber(accountInfo.number);
     setComplement(accountInfo.complement);
     setNeighborhood(accountInfo.neighborhood);
+    setSocial(accountInfo.social);
+
+    if (accountInfo.isCpf == 1) {
+      setCpfSelected(true);
+
+      var cpfelements = document.querySelectorAll(".cpf-relative");
+      cpfelements.forEach(function (cpfelement) {
+        cpfelement?.classList.remove("invisible");
+      });
+
+      var cnpjelements = document.querySelectorAll(".cnpj-relative");
+      cnpjelements.forEach(function (cnpjelement) {
+        cnpjelement?.classList.add("invisible");
+      });
+    } else {
+      setCpfSelected(false);
+
+      var cpfelements = document.querySelectorAll(".cpf-relative");
+      cpfelements.forEach(function (cpfelement) {
+        cpfelement?.classList.add("invisible");
+      });
+
+      var cnpjelements = document.querySelectorAll(".cnpj-relative");
+      cnpjelements.forEach(function (cnpjelement) {
+        cnpjelement?.classList.remove("invisible");
+      });
+    }
   }, [accountInfo]);
 
   const handleCpfChange = (event: any) => {
@@ -500,7 +533,7 @@ export default function EditAccount() {
           </EditUserAccountLabel>
           <EditUserAccountTextField
             id="social"
-            {...register("social", { required: !CpfSelected })}
+            {...register("social", { required: !CpfSelected && social == "" })}
             defaultValue={accountInfo.social}
             onChangeCapture={handleInputChange}
           />

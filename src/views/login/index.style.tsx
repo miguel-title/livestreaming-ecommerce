@@ -121,10 +121,6 @@ export const SubmitButtonContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
 
-    @media (max-width: 992px) {
-      width: 90%;
-    }
-
     @media (max-width: 768px) {
       font-size: 15px;
     }
@@ -155,10 +151,6 @@ export const SubmitButtonContainer = styled.div`
 
     margin-top: 10px;
     margin-bottom: 10px;
-
-    @media (max-width: 992px) {
-      width: 90%;
-    }
 
     @media (max-width: 768px) {
       font-size: 15px;

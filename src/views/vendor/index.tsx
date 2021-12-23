@@ -14,6 +14,12 @@ import {
   SubPartContainer,
   Title,
   RedLabel,
+  RadioButtonContainer,
+  RadioButtonLabel,
+  RadioButton,
+  RadioButtonsContainer,
+  DescriptionLabel,
+  EditUserAccountTextField,
 } from "./index.style";
 
 import data from "../../assets/data.json";
@@ -51,6 +57,8 @@ export default function Vendor(props: Props) {
 
   const [selectedFile, setSelectedFile] = useState<any>();
   const [isFilePicked, setIsFilePicked] = useState(false);
+
+  const [CpfSelected, setCpfSelected] = useState<boolean>(true);
 
   const [selectedImageUrl, setSelectedImageUrl] =
     useState<string>("/thumb.png");
@@ -152,16 +160,18 @@ export default function Vendor(props: Props) {
   const { logout } = useAuth();
 
   const submitData = async () => {
-    const formData = new FormData();
-
-    formData.append("file", selectedFile);
-
     var avataUrl = "";
-    await UploadImage(formData)
-      .then((data: any) => (avataUrl = data.url))
-      .catch((err) => {
-        console.log(err);
-      });
+    if (props.type == 0) {
+      const formData = new FormData();
+
+      formData.append("file", selectedFile);
+
+      await UploadImage(formData)
+        .then((data: any) => (avataUrl = data.url))
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
     await Register({
       avata: avataUrl,
@@ -180,6 +190,7 @@ export default function Vendor(props: Props) {
       password: password,
       confirmpassword: confirmPassword,
       role: props.type,
+      isCpf: CpfSelected ? 1 : 0,
     })
       .then(async (data: any) => {
         if (data.status === 200) {
@@ -254,6 +265,38 @@ export default function Vendor(props: Props) {
     setCnpj(data);
   };
 
+  const handleSelectChange = (e: any) => {
+    if (e.target.name == "cpf") {
+      setCpfSelected(true);
+
+      var cpfelements = document.querySelectorAll(".cpf-relative");
+      cpfelements.forEach(function (cpfelement) {
+        cpfelement?.classList.remove("invisible");
+      });
+
+      var cnpjelements = document.querySelectorAll(".cnpj-relative");
+      cnpjelements.forEach(function (cnpjelement) {
+        cnpjelement?.classList.add("invisible");
+      });
+
+      setCnpj("");
+    } else if (e.target.name == "cnpj") {
+      setCpfSelected(false);
+
+      var cpfelements = document.querySelectorAll(".cpf-relative");
+      cpfelements.forEach(function (cpfelement) {
+        cpfelement?.classList.add("invisible");
+      });
+
+      var cnpjelements = document.querySelectorAll(".cnpj-relative");
+      cnpjelements.forEach(function (cnpjelement) {
+        cnpjelement?.classList.remove("invisible");
+      });
+
+      setCpf("");
+    }
+  };
+
   return (
     <CommonLayout>
       <Wrapper>
@@ -263,90 +306,120 @@ export default function Vendor(props: Props) {
           </Title>
           <FormPart onSubmit={handleSubmit(submitData)}>
             {props.type == 0 && (
-              <SubPart className="ImagePart">
-                <FormLabel>Image</FormLabel>
-                <div
-                  style={{
-                    width: "200px",
-                    height: "200px",
-                  }}
-                >
+              <>
+                <SubPart className="ImagePart">
+                  <FormLabel>Image</FormLabel>
                   <div
                     style={{
-                      height: "100%",
-                      width: "100%",
-                      position: "relative",
+                      width: "200px",
+                      height: "200px",
                     }}
                   >
-                    <input
-                      type="file"
-                      name="image"
+                    <div
                       style={{
-                        width: "100%",
                         height: "100%",
-                        background: "red",
-                        left: 0,
-                        top: 0,
-                        position: "absolute",
-                        opacity: 0,
-                        zIndex: 99999,
+                        width: "100%",
+                        position: "relative",
                       }}
-                      onChange={(e) => {
-                        if (e.target.files && e.target.files.length > 0) {
-                          changeHandler(e);
-                          setSelectedImageUrl(
-                            URL.createObjectURL(e.target.files[0])
-                          );
-                        }
-                      }}
-                    />
-                    {/* <Field /> */}
-                    <img
-                      src={selectedImageUrl}
-                      style={{
-                        width: "200px",
-                        height: "200px",
-                        position: "absolute",
-                        left: "0",
-                        top: "0",
-                      }}
-                      alt=""
-                    />
+                    >
+                      <input
+                        type="file"
+                        name="image"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          background: "red",
+                          left: 0,
+                          top: 0,
+                          position: "absolute",
+                          opacity: 0,
+                          zIndex: 99999,
+                        }}
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files.length > 0) {
+                            changeHandler(e);
+                            setSelectedImageUrl(
+                              URL.createObjectURL(e.target.files[0])
+                            );
+                          }
+                        }}
+                      />
+                      {/* <Field /> */}
+                      <img
+                        src={selectedImageUrl}
+                        style={{
+                          width: "200px",
+                          height: "200px",
+                          position: "absolute",
+                          left: "0",
+                          top: "0",
+                        }}
+                        alt=""
+                      />
+                    </div>
                   </div>
-                </div>
-              </SubPart>
-            )}
+                </SubPart>
 
-            {props.type == 1 && (
-              <>
                 <SubFullPart>
-                  <FormLabel>
-                    Nome<RedLabel>*</RedLabel>
-                  </FormLabel>
+                  <RadioButtonsContainer>
+                    <RadioButtonContainer>
+                      <RadioButton
+                        type="radio"
+                        name="cpf"
+                        value="cpf"
+                        checked={CpfSelected}
+                        onChange={(event) => handleSelectChange(event)}
+                      />
+                      <RadioButtonLabel />
+                      <DescriptionLabel>CPF</DescriptionLabel>
+                    </RadioButtonContainer>
+
+                    <RadioButtonContainer>
+                      <RadioButton
+                        type="radio"
+                        name="cnpj"
+                        value="cnpj"
+                        checked={!CpfSelected}
+                        onChange={(event) => handleSelectChange(event)}
+                      />
+                      <RadioButtonLabel />
+                      <DescriptionLabel>
+                        CNPJ
+                        <span style={{ color: "red", fontWeight: "400" }}>
+                          *
+                        </span>
+                      </DescriptionLabel>
+                    </RadioButtonContainer>
+                  </RadioButtonsContainer>
                   <FormTextField
-                    id="name"
-                    {...register("name", { required: props.type == 1 })}
-                    onChangeCapture={handleInputChange}
+                    id="cpf"
+                    {...register("cpf", {
+                      required: CpfSelected && cpf == "",
+                      pattern: validCpfRegex,
+                    })}
+                    onChangeCapture={handleCpfChange}
+                    className="cpf-relative"
+                    value={cpf}
                   />
-                  <p>
-                    {errors.name && (
+                  <p className="cpf-relative">
+                    {errors.cpf && (
                       <span style={{ color: "red" }}>
                         Este campo é obrigatório.
                       </span>
                     )}
                   </p>
-                </SubFullPart>
-                <SubFullPart>
-                  <FormLabel>
-                    Sobrenome<RedLabel>*</RedLabel>
-                  </FormLabel>
                   <FormTextField
-                    id="surname"
-                    {...register("surname", { required: props.type == 1 })}
-                    onChangeCapture={handleInputChange}
+                    id="cnpj"
+                    {...register("cnpj", {
+                      required: !CpfSelected && cnpj == "",
+                      pattern: validCnpjRegex,
+                    })}
+                    onChangeCapture={handleCnpjChange}
+                    className="cnpj-relative invisible"
+                    value={cnpj}
                   />
-                  <p>
-                    {errors.surname && (
+                  <p className="cnpj-relative invisible">
+                    {errors.store && (
                       <span style={{ color: "red" }}>
                         Este campo é obrigatório.
                       </span>
@@ -355,6 +428,71 @@ export default function Vendor(props: Props) {
                 </SubFullPart>
               </>
             )}
+
+            <SubFullPart className="cpf-relative">
+              <FormLabel>
+                Nome<RedLabel>*</RedLabel>
+              </FormLabel>
+              <EditUserAccountTextField
+                id="name"
+                {...register("name", {
+                  required: CpfSelected && name == "",
+                })}
+                onChangeCapture={handleInputChange}
+              />
+              <p className="cpf-relative">
+                {errors.name && (
+                  <span style={{ color: "red" }}>
+                    Este campo é obrigatório.
+                  </span>
+                )}
+              </p>
+            </SubFullPart>
+
+            <SubFullPart className="cpf-relative">
+              <FormLabel>
+                Sobrenome
+                <RedLabel>*</RedLabel>
+              </FormLabel>
+              <EditUserAccountTextField
+                id="surname"
+                {...register("surname", {
+                  required: CpfSelected && surname == "",
+                })}
+                onChangeCapture={handleInputChange}
+              />
+              <p className="cpf-relative">
+                {errors.surname && (
+                  <span style={{ color: "red" }}>
+                    Este campo é obrigatório.
+                  </span>
+                )}
+              </p>
+            </SubFullPart>
+
+            {props.type == 0 && (
+              <SubFullPart className="cnpj-relative invisible">
+                <FormLabel>
+                  Razão Social
+                  <RedLabel>*</RedLabel>
+                </FormLabel>
+                <EditUserAccountTextField
+                  id="social"
+                  {...register("social", {
+                    required: props.type == 0 && !CpfSelected,
+                  })}
+                  onChangeCapture={handleInputChange}
+                />
+                <p className="cnpj-relative invisible">
+                  {errors.social && (
+                    <span style={{ color: "red" }}>
+                      Este campo é obrigatório.
+                    </span>
+                  )}
+                </p>
+              </SubFullPart>
+            )}
+
             <SubFullPart>
               <FormLabel>
                 E-mail<RedLabel>*</RedLabel>
@@ -399,64 +537,41 @@ export default function Vendor(props: Props) {
             )}
 
             {props.type == 0 && (
-              <>
-                <SubFullPart>
-                  <FormLabel>
-                    Nome da Loja<RedLabel>*</RedLabel>
-                  </FormLabel>
-                  <FormTextField
-                    id="store"
-                    {...register("store", { required: props.type == 0 })}
-                    onChangeCapture={handleInputChange}
-                  />
-                  <p>
-                    {errors.store && (
-                      <span style={{ color: "red" }}>
-                        Este campo é obrigatório.
-                      </span>
-                    )}
-                  </p>
-                </SubFullPart>
-
-                <SubFullPart>
-                  <FormLabel>
-                    CNPJ<RedLabel>*</RedLabel>
-                  </FormLabel>
-                  <FormTextField
-                    id="cnpj"
-                    {...register("cnpj", {
-                      required: true,
-                      pattern: validCnpjRegex,
-                    })}
-                    onChangeCapture={handleCnpjChange}
-                    value={cnpj}
-                  />
-                  <p>
-                    {errors.cnpj && (
-                      <span style={{ color: "red" }}>Formato Inválido.</span>
-                    )}
-                  </p>
-                </SubFullPart>
-
-                <SubFullPart>
-                  <FormLabel>
-                    Endereço<RedLabel>*</RedLabel>
-                  </FormLabel>
-                  <FormTextField
-                    id="address"
-                    {...register("address", { required: props.type == 0 })}
-                    onChangeCapture={handleInputChange}
-                  />
-                  <p>
-                    {errors.address && (
-                      <span style={{ color: "red" }}>
-                        Este campo é obrigatório.
-                      </span>
-                    )}
-                  </p>
-                </SubFullPart>
-              </>
+              <SubFullPart>
+                <FormLabel>
+                  Nome da Loja<RedLabel>*</RedLabel>
+                </FormLabel>
+                <FormTextField
+                  id="store"
+                  {...register("store", { required: props.type == 0 })}
+                  onChangeCapture={handleInputChange}
+                />
+                <p>
+                  {errors.store && (
+                    <span style={{ color: "red" }}>
+                      Este campo é obrigatório.
+                    </span>
+                  )}
+                </p>
+              </SubFullPart>
             )}
+            <SubFullPart>
+              <FormLabel>
+                Endereço<RedLabel>*</RedLabel>
+              </FormLabel>
+              <FormTextField
+                id="address"
+                {...register("address", { required: props.type == 0 })}
+                onChangeCapture={handleInputChange}
+              />
+              <p>
+                {errors.address && (
+                  <span style={{ color: "red" }}>
+                    Este campo é obrigatório.
+                  </span>
+                )}
+              </p>
+            </SubFullPart>
 
             <SubPartContainer>
               <SubPart>

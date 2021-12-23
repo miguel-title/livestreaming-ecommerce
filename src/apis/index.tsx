@@ -25,6 +25,7 @@ export const UploadImage = async (data: any) => {
 };
 
 export const UpdateAccount = async (data: any) => {
+  console.log(data, "aaa");
   try {
     const response = await axios.post<{}>(
       `${ServerUrl}/vendor/updateAccount`,

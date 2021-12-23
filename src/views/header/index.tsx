@@ -71,6 +71,7 @@ export default function Header() {
   };
 
   const handleDashboard = async (): Promise<void> => {
+    setShowMenu(false);
     const accessToken: any = window.localStorage.getItem("accessToken");
     const token: any = jwtDecode(accessToken);
     if (token.role == 0) {
@@ -85,7 +86,6 @@ export default function Header() {
     try {
       const accessToken: any = window.localStorage.getItem("accessToken");
       const decoded: any = jwtDecode(accessToken);
-      console.log(decoded);
       if (decoded.avataUrl == "" || typeof decoded.avataUrl == "undefined") {
         setProfileImg("/user-profile.png");
       } else {
