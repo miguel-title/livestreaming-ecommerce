@@ -198,7 +198,7 @@ export default function EditAccount() {
   const { logout } = useAuth();
 
   const submitData = async () => {
-    var avataUrl = "";
+    var avataUrl = accountInfo.avata;
     if (selectedFile != null) {
       const formData = new FormData();
       formData.append("file", selectedFile);
