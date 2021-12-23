@@ -60,7 +60,7 @@ export default function EditAccount() {
   const [vestado, setVEstado] = useState<any>();
   const [vcity, setVCity] = useState<any>({});
 
-  const [selectedFile, setSelectedFile] = useState<any>();
+  const [selectedFile, setSelectedFile] = useState<any>(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
   const onConditionChange = (e: any) => {
@@ -198,18 +198,20 @@ export default function EditAccount() {
   const { logout } = useAuth();
 
   const submitData = async () => {
-    const formData = new FormData();
-
-    formData.append("file", selectedFile);
     var avataUrl = "";
-    await UploadImage(formData)
-      .then((data: any) => (avataUrl = data.url))
-      .catch((err) => {
-        console.log(err);
-      });
+    if (selectedFile != null) {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
 
-    if (avataUrl == "") {
-      avataUrl = selectedImageUrl;
+      await UploadImage(formData)
+        .then((data: any) => (avataUrl = data.url))
+        .catch((err) => {
+          console.log(err);
+        });
+
+      if (avataUrl == "") {
+        avataUrl = selectedImageUrl;
+      }
     }
     const accessToken: any = window.localStorage.getItem("accessToken");
     const decoded: any = jwtDecode(accessToken);
