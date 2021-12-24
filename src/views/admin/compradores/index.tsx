@@ -17,15 +17,17 @@ import { GetBuyers, DeleteUser } from "../../../apis";
 import { Link } from "react-router-dom";
 
 export default function Vendedores() {
+  const [buyerAllData, setBuyerAllData] = useState<any>([]);
   const [buyerData, setBuyerData] = useState<any>([]);
   const [pageBuyerData, setPageBuyerData] = useState<any>([]);
   const [curPage, setCurPage] = useState<any>(0);
-  const [totalPage, setTotalPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(0);
   const [offset, setOffset] = useState<any>(0);
 
   useEffect(() => {
     GetBuyers(-1).then((res: any) => {
       setBuyerData(res);
+      setBuyerAllData(res);
 
       var page = res.length % 5 > 0 ? 1 : 0;
       setTotalPage(Math.floor(res.length / 5) + page);
@@ -40,10 +42,19 @@ export default function Vendedores() {
     await DeleteUser(id);
     await GetBuyers(-1).then((res: any) => {
       setBuyerData(res);
+      setBuyerAllData(res);
       setPageBuyerData(res.slice(0, 4));
     });
   };
-  const handleInputChange = () => {};
+  const handleInputChange = (e: any) => {
+    const filteredBuyerData = buyerAllData.filter((item: any) =>
+      item.name.includes(e.target.value)
+    );
+    setBuyerData(filteredBuyerData);
+
+    var page = filteredBuyerData.length % 5 > 0 ? 1 : 0;
+    setTotalPage(Math.floor(filteredBuyerData.length / 5) + page);
+  };
 
   const getDate = (datestring: string) => {
     let vDate = new Date(datestring);

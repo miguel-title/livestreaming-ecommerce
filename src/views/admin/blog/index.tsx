@@ -17,15 +17,18 @@ import { GetBlogs, DeleteBlog } from "../../../apis";
 import { Link } from "react-router-dom";
 
 export default function Blog() {
+  const [blogAllData, setBlogAllData] = useState<any>([]);
   const [blogData, setBlogData] = useState<any>([]);
   const [pageBlogData, setPageBlogData] = useState<any>([]);
   const [curPage, setCurPage] = useState<any>(0);
-  const [totalPage, setTotalPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(0);
   const [offset, setOffset] = useState<any>(0);
 
   useEffect(() => {
     GetBlogs(-1).then((res: any) => {
       setBlogData(res);
+
+      setBlogAllData(res);
 
       var page = res.length % 5 > 0 ? 1 : 0;
       setTotalPage(Math.floor(res.length / 5) + page);
@@ -40,10 +43,19 @@ export default function Blog() {
     await DeleteBlog(id);
     await GetBlogs(-1).then((res: any) => {
       setBlogData(res);
+      setBlogAllData(res);
       setPageBlogData(res.slice(0, 4));
     });
   };
-  const handleInputChange = () => {};
+  const handleInputChange = (e: any) => {
+    const filteredBlogData = blogAllData.filter((item: any) =>
+      item.name.includes(e.target.value)
+    );
+    setBlogData(filteredBlogData);
+
+    var page = filteredBlogData.length % 5 > 0 ? 1 : 0;
+    setTotalPage(Math.floor(filteredBlogData.length / 5) + page);
+  };
 
   const getDate = (datestring: string) => {
     let vDate = new Date(datestring);

@@ -22,10 +22,11 @@ export default function VendedorEdit() {
 
   const [buyerData, setBuyerData] = useState<any>();
 
+  const [pedidoAllData, setPedidoAllData] = useState<any>([]);
   const [pedidoData, setPedidoData] = useState<any>([]);
   const [pagePedidoData, setPagePedidoData] = useState<any>([]);
   const [curPage, setCurPage] = useState<any>(0);
-  const [totalPage, setTotalPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(0);
   const [offset, setOffset] = useState<any>(0);
 
   useEffect(() => {
@@ -35,13 +36,22 @@ export default function VendedorEdit() {
       });
       await GetBuyerPedidos(compradorID).then((res: any) => {
         setPedidoData(res);
+        setPedidoAllData(res);
       });
     };
 
     fetchData();
   }, []);
 
-  const handleInputChange = () => {};
+  const handleInputChange = (e: any) => {
+    const filteredPedidoData = pedidoAllData.filter((item: any) =>
+      item.name.includes(e.target.value)
+    );
+    setBuyerData(filteredPedidoData);
+
+    var page = filteredPedidoData.length % 5 > 0 ? 1 : 0;
+    setTotalPage(Math.floor(filteredPedidoData.length / 5) + page);
+  };
 
   const handlePageClick = (e: any) => {
     const selectedPage = e.selected;
