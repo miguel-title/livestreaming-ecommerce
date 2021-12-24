@@ -12,13 +12,13 @@ export const Container = styled.div`
   margin-left: auto;
   padding-bottom: 1px;
 
-  /* max-width: 90%; */
+  max-width: 90%;
 
   @media (max-width: 625px) {
     margin: 0;
   }
 
-  /* @media (min-width: 576px) {
+  @media (min-width: 576px) {
     max-width: 540px;
   }
 
@@ -36,7 +36,7 @@ export const Container = styled.div`
 
   @media (min-width: 1400px) {
     max-width: 1320px;
-  } */
+  }
 `;
 
 export const Title = styled.div`
