@@ -15,10 +15,9 @@ const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
   //   return <>{children}</>;
   // } else {
 
-  const accessToken: any = window.localStorage.getItem("accessToken");
-  const decoded: any = jwtDecode(accessToken);
-
   if (window.localStorage.getItem("accessToken") != null) {
+    const accessToken: any = window.localStorage.getItem("accessToken");
+    const decoded: any = jwtDecode(accessToken);
     if (decoded.role == 0) {
       const isAuthenticate =
         window.localStorage.getItem("accessToken") != "" ? true : false;

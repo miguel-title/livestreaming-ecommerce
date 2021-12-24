@@ -11,10 +11,9 @@ interface AdminGuardProps {
 const AdminGuard: FC<AdminGuardProps> = ({ children }) => {
   // const { isAuthenticated, user } = useAuth();
 
-  const accessToken: any = window.localStorage.getItem("accessToken");
-  const decoded: any = jwtDecode(accessToken);
-
   if (window.localStorage.getItem("accessToken") != null) {
+    const accessToken: any = window.localStorage.getItem("accessToken");
+    const decoded: any = jwtDecode(accessToken);
     if (decoded.role == 2) {
       const isAuthenticate =
         window.localStorage.getItem("accessToken") != "" ? true : false;
