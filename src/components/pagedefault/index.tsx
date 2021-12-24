@@ -14,10 +14,6 @@ export const Container = styled.div`
 
   max-width: 90%;
 
-  @media (max-width: 625px) {
-    margin: 0;
-  }
-
   @media (min-width: 576px) {
     max-width: 540px;
   }

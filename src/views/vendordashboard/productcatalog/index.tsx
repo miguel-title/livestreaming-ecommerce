@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
-import { Container, Title } from "../../../components/pagedefault";
+import { Title } from "../../../components/pagedefault";
 
 import {
   ProductCatalogWrapper,
@@ -10,6 +10,7 @@ import {
   CRUDButton,
   ProductCatalogTextField,
   ProductCatalogTable,
+  Container,
 } from "./index.style";
 
 export default function ProductCatalog() {

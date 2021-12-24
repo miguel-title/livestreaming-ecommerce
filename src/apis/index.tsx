@@ -5,6 +5,7 @@ import config from "../assets/config.json";
 const ServerUrl = config.ServerUrl;
 
 export const Register = async (data: any) => {
+  console.log(data, "aaa");
   try {
     const response = await axios.post<{}>(`${ServerUrl}/vendor/register`, data);
     if (response.status === 200) return response.data;
