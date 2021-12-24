@@ -66,9 +66,11 @@ export default function Blog() {
   return (
     <DashboardWrapper>
       <DashboardTitle>Blog</DashboardTitle>
-      <Link to="/admin/blog/edit" style={{ textDecoration: "none" }}>
-        <NewPostButton>Nova Publicação</NewPostButton>
-      </Link>
+      <div style={{ width: "200px" }}>
+        <Link to="/admin/blog/edit" style={{ textDecoration: "none" }}>
+          <NewPostButton>Nova Publicação</NewPostButton>
+        </Link>
+      </div>
       <SubContainer>
         <DashboardSubTitle>Últimos Posts</DashboardSubTitle>
         <FormTextField
