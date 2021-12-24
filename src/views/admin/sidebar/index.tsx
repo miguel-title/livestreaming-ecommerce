@@ -32,7 +32,7 @@ export default function index() {
           <ReactTooltip id="blog" effect="solid">
             <span>Blog</span>
           </ReactTooltip>
-          <Link to="/admin/users" data-tip data-for="users">
+          <Link to="/admin/user" data-tip data-for="users">
             <MenuItem>
               <BiUserCircle />
             </MenuItem>

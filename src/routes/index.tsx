@@ -257,6 +257,44 @@ const routes: RouteItem[] = [
     layout: AdminDashboard,
     component: lazy(() => import("../views/admin/blog/edit")),
   },
+
+  {
+    exact: true,
+    path: "/admin/user",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/user")),
+  },
+  {
+    exact: true,
+    path: "/admin/vendedores",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/vendedores")),
+  },
+  {
+    exact: true,
+    path: "/admin/compradores",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/compradores")),
+  },
+
+  {
+    exact: true,
+    path: "/admin/vendedores/:vendedorID",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/vendedores/edit")),
+  },
+
+  {
+    exact: true,
+    path: "/admin/compradores/:compradorID",
+    guard: AdminGuard,
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/compradores/edit")),
+  },
 ];
 
 export default routes;

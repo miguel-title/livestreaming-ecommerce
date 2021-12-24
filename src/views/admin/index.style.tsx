@@ -88,6 +88,10 @@ export const SubContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   padding: 25px 35px;
 
+  &.viewSubContainer {
+    padding-bottom: 60px;
+  }
+
   @media (max-width: 992px) {
     width: calc(100% - 60px);
   }

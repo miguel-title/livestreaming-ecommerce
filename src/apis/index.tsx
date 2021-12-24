@@ -71,7 +71,7 @@ export const Login = async (data: any) => {
   }
 };
 
-export const GetAccountInfo = async (id: string) => {
+export const GetAccountInfo = async (id: any) => {
   try {
     const response = await axios.post<{}>(`${ServerUrl}/vendor/accountInfo`, {
       id: id,
@@ -138,6 +138,73 @@ export const UpdateBlog = async (blog: any) => {
     const response = await axios.post<{}>(
       `${ServerUrl}/vendor/updateBlog`,
       blog
+    );
+    if (response.status === 200) return response.data;
+    else return [];
+  } catch (err) {
+    return [];
+  }
+};
+
+export const GetSellers = async (count: number) => {
+  try {
+    const response = await axios.post<{}>(`${ServerUrl}/vendor/getSellers`, {
+      count: count,
+    });
+    if (response.status === 200) return response.data;
+    else return [];
+  } catch (err) {
+    return [];
+  }
+};
+
+export const GetBuyers = async (count: number) => {
+  try {
+    const response = await axios.post<{}>(`${ServerUrl}/vendor/getBuyers`, {
+      count: count,
+    });
+    if (response.status === 200) return response.data;
+    else return [];
+  } catch (err) {
+    return [];
+  }
+};
+
+export const DeleteUser = async (id: string) => {
+  try {
+    const response = await axios.post<{}>(`${ServerUrl}/vendor/deleteUser`, {
+      id: id,
+    });
+
+    if (response.status === 200) return true;
+    else return false;
+  } catch (err) {
+    return false;
+  }
+};
+
+export const GetVendorPedidos = async (vendedorid: any) => {
+  try {
+    const response = await axios.post<{}>(
+      `${ServerUrl}/vendor/getVendedorPedido`,
+      {
+        id: vendedorid,
+      }
+    );
+    if (response.status === 200) return response.data;
+    else return [];
+  } catch (err) {
+    return [];
+  }
+};
+
+export const GetBuyerPedidos = async (compradorID: any) => {
+  try {
+    const response = await axios.post<{}>(
+      `${ServerUrl}/vendor/getCompradorPedido`,
+      {
+        id: compradorID,
+      }
     );
     if (response.status === 200) return response.data;
     else return [];
