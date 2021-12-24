@@ -86,7 +86,7 @@ export const HeaderLogo = styled.div`
 `;
 
 export const HeaderLogoImg = styled.img`
-  height: 90px;
+  height: 70px;
   vertical-align: middle;
 `;
 
