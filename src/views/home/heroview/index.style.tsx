@@ -12,6 +12,11 @@ export const HeroViewWrapper = styled.div`
     margin-top: 100px;
     margin-bottom: 150px;
   }
+
+  @media (max-width: 425px) {
+    margin-top: 80px;
+    margin-bottom: 105px;
+  }
 `;
 
 export const HeorViewContainer = styled.div`
@@ -53,6 +58,10 @@ export const HeroViewMobileButtonContainer = styled.div`
   justify-content: center;
   height: 150px;
   display: flex;
+
+  @media (max-width: 425px) {
+    height: 107px;
+  }
 `;
 
 export const HeroViewTitle = styled.div`
@@ -65,6 +74,10 @@ export const HeroViewTitle = styled.div`
   p {
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 30px;
   }
 `;
 
@@ -81,6 +94,10 @@ export const HeroViewContent = styled.div`
   p {
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 14px;
   }
 `;
 
@@ -121,6 +138,11 @@ export const HeroViewMobileButton = styled.div`
 
   @media (min-width: 576px) {
     padding: 1rem 4rem 1rem 4rem;
+  }
+
+  @media (max-width: 425px) {
+    height: 25px;
+    line-height: 25px;
   }
 `;
 

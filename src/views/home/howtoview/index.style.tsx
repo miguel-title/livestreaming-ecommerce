@@ -12,15 +12,15 @@ export const HowtoViewContainer = styled.div`
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   max-width: 90%;
-  @media (min-width: 576px) {
+  @media (min-width: 577px) {
     max-width: 540px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     max-width: 720px;
   }
 
-  @media (min-width: 992px) {
+  @media (min-width: 993px) {
     max-width: 960px;
   }
 
@@ -107,6 +107,79 @@ export const ContentPart = styled.div`
     padding-top: 0;
     padding-bottom: 0;
 
+    width: 45%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 130%;
+      background-color: #c5b097;
+      border-radius: 30px;
+      transform: translateY(-22%);
+    }
+  }
+  @media (max-width: 768px) {
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    width: 55%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 130%;
+      background-color: #c5b097;
+      border-radius: 30px;
+      transform: translateY(-22%);
+    }
+  }
+
+  @media (max-width: 576px) {
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    width: 60%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 130%;
+      background-color: #c5b097;
+      border-radius: 30px;
+      transform: translateY(-22%);
+    }
+  }
+
+  @media (max-width: 476px) {
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    width: 68%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 130%;
+      background-color: #c5b097;
+      border-radius: 30px;
+      transform: translateY(-22%);
+    }
+  }
+
+  @media (max-width: 385px) {
+    background: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    width: 85%;
+
     &::before {
       content: "";
       position: absolute;
@@ -128,7 +201,31 @@ export const ContentItem = styled.div`
   font-size: 1.25rem;
 
   @media (max-width: 992px) {
-    font-size: 1.5rem;
+    font-size: 20px;
+    padding-left: 35px;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 16px;
+    padding-left: 35px;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 14px;
+    padding-left: 35px;
+    /* padding-left: 20px; */
+  }
+
+  @media (max-width: 385px) {
+    font-size: 12px;
+    padding-left: 20px;
+    /* padding-left: 20px; */
+  }
+
+  @media (max-width: 320px) {
+    font-size: 10px;
+    padding-left: 20px;
+    /* padding-left: 20px; */
   }
 
   &.LastItem {
@@ -142,9 +239,19 @@ export const ContentItem = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50px;
+    border-radius: 50%;
     font-weight: bold;
     margin-right: 15px;
+
+    @media (max-width: 992px) {
+      height: 35px;
+      width: 35px;
+    }
+
+    @media (max-width: 425px) {
+      height: 20px;
+      width: 20px;
+    }
   }
 `;
 
@@ -164,6 +271,10 @@ export const HowtoViewBottomRightPart = styled.div`
       margin-left: auto;
       position: relative;
       margin-top: 30px;
+    }
+
+    @media (max-width: 425px) {
+      width: 100%;
     }
   }
 `;

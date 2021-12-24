@@ -88,6 +88,10 @@ export const HeaderLogo = styled.div`
 export const HeaderLogoImg = styled.img`
   height: 70px;
   vertical-align: middle;
+
+  @media (max-width: 425px) {
+    height: 50px;
+  }
 `;
 
 export const NavBar = styled.div`
@@ -233,4 +237,9 @@ export const ProfileImage = styled.img`
 
   border-radius: 50%;
   border: 3px solid;
+
+  @media (max-width: 425px) {
+    width: 35px;
+    height: 35px;
+  }
 `;

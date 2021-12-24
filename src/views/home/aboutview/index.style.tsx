@@ -93,6 +93,10 @@ export const AboutViewContentSubPart = styled.div`
   @media (max-width: 992px) {
     padding-right: 0;
   }
+
+  @media (max-width: 425px) {
+    font-size: 12px;
+  }
 `;
 
 export const AboutViewImgPart = styled.div`

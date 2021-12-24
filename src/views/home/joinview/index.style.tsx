@@ -48,6 +48,10 @@ export const JoinViewTitlePart = styled.div`
     position: absolute;
     vertical-align: middle;
     top: 1.5rem;
+
+    @media (max-width: 425px) {
+      display: none;
+    }
   }
 `;
 
