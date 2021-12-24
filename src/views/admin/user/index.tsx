@@ -26,10 +26,10 @@ export default function User() {
   const [buyers, setBuyers] = useState<any>([]);
 
   useEffect(() => {
-    GetSellers(2).then((res: any) => {
+    GetSellers(-1).then((res: any) => {
       setSellers(res);
     });
-    GetBuyers(2).then((res: any) => {
+    GetBuyers(-1).then((res: any) => {
       setBuyers(res);
     });
   }, []);
@@ -37,11 +37,11 @@ export default function User() {
   const handleDelete = async (id: string, type: Number) => {
     await DeleteUser(id);
     if (type == 0) {
-      await GetSellers(2).then((res: any) => {
+      await GetSellers(-1).then((res: any) => {
         setSellers(res);
       });
     } else {
-      await GetBuyers(2).then((res: any) => {
+      await GetBuyers(-1).then((res: any) => {
         setBuyers(res);
       });
     }

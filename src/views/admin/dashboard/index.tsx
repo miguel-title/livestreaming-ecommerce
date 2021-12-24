@@ -18,14 +18,14 @@ export default function Dashboard() {
   const [blogs, setBlogs] = useState<any>([]);
 
   useEffect(() => {
-    GetBlogs(2).then((res: any) => {
+    GetBlogs(-1).then((res: any) => {
       setBlogs(res);
     });
   }, []);
 
   const handleDelete = async (id: string) => {
     await DeleteBlog(id);
-    await GetBlogs(2).then((res: any) => {
+    await GetBlogs(-1).then((res: any) => {
       setBlogs(res);
     });
   };

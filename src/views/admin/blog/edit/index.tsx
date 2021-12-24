@@ -253,7 +253,7 @@ export default function BlogEdit() {
           </SubPart>
           <div className="ButtonPart">
             <SubmitButtonContainer>
-              <input type="submit" value="EDITAR" className="submit" />
+              <input type="submit" value="publicar" className="submit" />
             </SubmitButtonContainer>
           </div>
         </FormPart>
