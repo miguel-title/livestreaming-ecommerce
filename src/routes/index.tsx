@@ -218,7 +218,8 @@ const routes: RouteItem[] = [
     exact: true,
     path: "/admin",
     guard: AdminGuard,
-    component: lazy(() => import("../views/admin/login")),
+    layout: AdminDashboard,
+    component: lazy(() => import("../views/admin/dashboard")),
   },
 
   {
