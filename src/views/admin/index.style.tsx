@@ -27,6 +27,12 @@ export const DashboardWrapper = styled.div`
   .ButtonPart {
     display: flex;
     justify-content: center;
+
+    margin-top: 30px;
+
+    @media (max-width: 625px) {
+      margin-top: 0;
+    }
   }
 `;
 
