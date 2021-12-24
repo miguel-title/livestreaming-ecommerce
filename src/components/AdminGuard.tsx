@@ -22,9 +22,12 @@ const AdminGuard: FC<AdminGuardProps> = ({ children }) => {
         return <Navigate to="/admin/login" />;
       }
       return <>{children}</>;
-    } else {
-      return <Navigate to="/admin/login" />;
+    } else if (decoded.role == 0) {
+      return <Navigate to="/vendor-dashboard" />;
+    } else if (decoded.role == 1) {
+      return <Navigate to="/painel-usuario" />;
     }
+    return <Navigate to="/admin/login" />;
   } else {
     return <Navigate to="/admin/login" />;
   }

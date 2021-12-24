@@ -26,6 +26,10 @@ const UserAuthGuard: FC<UserAuthGuardProps> = ({ children }) => {
         return <Navigate to="/login" />;
       }
       return <>{children}</>;
+    } else if (decoded.role == 2) {
+      return <Navigate to="/admin" />;
+    } else if (decoded.role == 0) {
+      return <Navigate to="/vendor-dashboard" />;
     }
     return <Navigate to="/login" />;
   } else {
