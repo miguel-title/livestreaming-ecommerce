@@ -12,9 +12,13 @@ export const Container = styled.div`
   margin-left: auto;
   padding-bottom: 1px;
 
-  max-width: 90%;
+  /* max-width: 90%; */
 
-  @media (min-width: 576px) {
+  @media (max-width: 625px) {
+    margin: 0;
+  }
+
+  /* @media (min-width: 576px) {
     max-width: 540px;
   }
 
@@ -32,7 +36,7 @@ export const Container = styled.div`
 
   @media (min-width: 1400px) {
     max-width: 1320px;
-  }
+  } */
 `;
 
 export const Title = styled.div`
@@ -42,6 +46,10 @@ export const Title = styled.div`
 
   @media (max-width: 992px) {
     text-align: left;
+  }
+
+  @media (max-width: 625px) {
+    font-size: 18px;
   }
 `;
 
@@ -74,7 +82,11 @@ export const CustomButton = styled.div`
     font-size: 15px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 625px) {
     font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    width: 150px;
+    margin-top: 0px;
   }
 `;

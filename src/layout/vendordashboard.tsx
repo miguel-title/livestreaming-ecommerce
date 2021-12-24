@@ -15,18 +15,24 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 100px;
-`
+
+  @media (max-width: 625px) {
+    margin-left: 60px;
+    padding: 25px 0;
+    margin-right: 20px;
+  }
+`;
 
 const ContentWrapper = styled.div`
   padding: 35px 0;
   display: flex;
   width: 100%;
   margin-top: 70px;
-  
-  @media (max-width:992px){
-  margin-top:0;
+
+  @media (max-width: 992px) {
+    margin-top: 0;
   }
-`
+`;
 
 export default function vendordashboard({
   children,
@@ -36,10 +42,10 @@ export default function vendordashboard({
   return (
     <Container>
       <SideBar />
-        <Content>
-            <NavBar />
-            <ContentWrapper>{children}</ContentWrapper>
-        </Content>
+      <Content>
+        <NavBar />
+        <ContentWrapper>{children}</ContentWrapper>
+      </Content>
     </Container>
   );
 }

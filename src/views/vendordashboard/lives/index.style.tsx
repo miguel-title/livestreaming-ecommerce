@@ -9,6 +9,11 @@ export const LivesContainer = styled.div`
   @media (max-width: 992px) {
     width: calc(100% - 60px);
   }
+
+  @media (max-width: 625px) {
+    padding: 25px 10px;
+    width: 100%;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -20,6 +25,10 @@ export const ButtonContainer = styled.div`
   @media (max-width: 992px) {
     display: flex;
     flex-direction: column;
+  }
+
+  @media (max-width: 625px) {
+    margin-top: 20px;
   }
 
   .ButtonLink {
@@ -37,22 +46,27 @@ export const LivesTableLabel = styled.div`
   color: #555555;
   font-weight: 600;
   margin-top: 30px;
+  @media (max-width: 625px) {
+    font-size: 14px;
+    margin-top: 10px;
+  }
 `;
 
 export const LivesTableContainer = styled.div`
   margin-top: 20px;
-  
-  @media (max-width:992px){
-  margin-top:20px;
+
+  @media (max-width: 625px) {
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
-  
+
   .HeaderSubpart {
     width: 100%;
-    overflow: auto;
+    /* overflow: auto; */
     contain: content;
-    min-width: 480px;
+    /* min-width: 480px; */
   }
-  overflow: auto;
+  /* overflow: auto; */
 `;
 
 export const LivesTable = styled.div`
@@ -60,23 +74,30 @@ export const LivesTable = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 625px) {
+      font-size: 10px;
+    }
   }
 
   .HeaderPart > div {
     text-align: left;
-    font-size: 15px;
 
     background-color: #eeeeee;
     color: #555555;
 
-    width: 32%;
+    /* width: 32%; */
     padding: 3px 0 3px 1%;
 
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
-  
+
   @media (max-width: 992px) {
     background-color: #ffffff;
     padding: 1rem 1rem;
+  }
+
+  @media (max-width: 625px) {
+    padding: 0;
   }
 `;

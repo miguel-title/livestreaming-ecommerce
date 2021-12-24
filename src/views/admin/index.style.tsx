@@ -117,7 +117,7 @@ export const TableContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
 
-    @media (max-width: 425px) {
+    @media (max-width: 625px) {
       font-size: 10px;
     }
   }

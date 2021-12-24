@@ -50,7 +50,7 @@ export default function index() {
       <OverLay className="overlay" onClick={() => hideMobileMenu()}></OverLay>
       <SideBarWrapper>
         <SideBarHeader>
-          <img src={logoImage} width={70} height={70} alt="logo" />
+          <img src={logoImage} className="logoImg" alt="logo" />
         </SideBarHeader>
         <SideBarContent>
           <MobileNavMenu>

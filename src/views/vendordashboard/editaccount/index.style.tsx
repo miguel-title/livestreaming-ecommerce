@@ -13,6 +13,11 @@ export const EditUserAccountContainer = styled.div`
   .invisible {
     display: none;
   }
+
+  @media (max-width: 625px) {
+    padding: 25px 10px;
+    width: 100%;
+  }
 `;
 
 export const EditUserAccountFormPart = styled.form`
@@ -22,6 +27,10 @@ export const EditUserAccountFormPart = styled.form`
     display: flex;
     justify-content: center;
   }
+
+  @media (max-width: 625px) {
+    margin-top: 20px;
+  }
 `;
 
 export const EditUserAccountLabel = styled.div`
@@ -30,6 +39,10 @@ export const EditUserAccountLabel = styled.div`
   font-weight: 600;
 
   margin-bottom: 10px;
+
+  @media (max-width: 625px) {
+    font-size: 14px;
+  }
 `;
 
 export const EditUserAccountTextField = styled.input`
@@ -46,6 +59,14 @@ export const EditUserAccountTextField = styled.input`
 
   font-size: 20px;
   height: 40px;
+
+  @media (max-width: 625px) {
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    width: 95%;
+    margin-bottom: 10px;
+  }
 `;
 
 export const SubPart = styled.div``;
@@ -59,6 +80,24 @@ export const SubItemPart = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
+
+  #condition {
+    @media (max-width: 625px) {
+      height: 30px;
+      font-size: 12px;
+    }
+  }
+
+  #city {
+    @media (max-width: 625px) {
+      height: 30px;
+      font-size: 12px;
+    }
   }
 `;
 
@@ -107,8 +146,10 @@ export const SendButton = styled.div`
     font-size: 15px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 625px) {
     font-size: 12px;
+    height: 40px;
+    line-height: 40px;
   }
 `;
 
@@ -147,6 +188,10 @@ export const RadioButtonLabel = styled.label`
   border-radius: 50%;
   background: white;
   border: 1px solid #bebebe;
+  @media (max-width: 625px) {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 export const RadioButton = styled.input`
@@ -186,6 +231,42 @@ export const RadioButton = styled.input`
     }
   }
 `}
+
+  @media (max-width:625px) {
+    width: 14px;
+    height: 14px;
+
+    &:hover ~ ${RadioButtonLabel} {
+      background: #bebebe;
+      &::after {
+        content: "";
+        display: block;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        margin: 6px;
+        background: #eeeeee;
+      }
+    }
+    ${(props) =>
+      props.checked &&
+      ` 
+      &:checked + ${RadioButtonLabel} {
+        background: #e8b89b;
+        border: 1px solid #e8b89b;
+        &::after {
+          content: "";
+          display: block;
+          border-radius: 50%;
+          width: 10px;
+          height: 10px;
+          margin: 2px;
+          box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.1);
+          background: white;
+        }
+      }
+    `}
+  }
 `;
 
 export const DescriptionLabel = styled.div`
@@ -194,6 +275,10 @@ export const DescriptionLabel = styled.div`
 
 export const SubmitButtonContainer = styled.div`
   width: 200px;
+
+  @media (max-width: 625px) {
+    width: 150px;
+  }
 
   .submit {
     text-transform: uppercase;
@@ -225,8 +310,11 @@ export const SubmitButtonContainer = styled.div`
       font-size: 15px;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 625px) {
       font-size: 12px;
+      height: 40px;
+      line-height: 40px;
+      width: 150px;
     }
   }
 `;

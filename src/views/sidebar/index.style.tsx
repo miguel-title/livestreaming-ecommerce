@@ -11,8 +11,10 @@ export const SideBarWrapper = styled.div`
   background: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   z-index: 1;
+  @media (max-width: 625px) {
+    padding: 20px 5px;
+  }
 `;
-
 
 export const OverLay = styled.div`
   &.visible {
@@ -20,7 +22,7 @@ export const OverLay = styled.div`
     pointer-events: initial;
     visibility: visible;
   }
-  
+
   z-index: 99999;
 
   pointer-events: none;
@@ -31,24 +33,33 @@ export const OverLay = styled.div`
   position: fixed;
 
   top: 0;
-  left:0;
+  left: 0;
 `;
 
 export const SideBarHeader = styled.div`
   display: flex;
+  .logoImg {
+    width: 70px;
+    height: 70px;
+
+    @media (max-width: 625px) {
+      width: 35px;
+      height: 35px;
+    }
+  }
 `;
 
 export const SideBarContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  a{
-  text-decoration: none;
+  a {
+    text-decoration: none;
   }
 `;
 
 interface MenuItemProps {
-    active?: boolean;
+  active?: boolean;
 }
 
 export const MenuItem = styled.div<MenuItemProps>`
@@ -58,11 +69,11 @@ export const MenuItem = styled.div<MenuItemProps>`
   justify-content: center;
   border-radius: 10px;
   cursor: pointer;
-  background-color: ${({active}) => {
-    if (active) return '#c5b0971a';
-    else return 'inherit';
-}};
-  svg{
+  background-color: ${({ active }) => {
+    if (active) return "#c5b0971a";
+    else return "inherit";
+  }};
+  svg {
     width: 30px;
     height: 30px;
     color: #8c8c8c;
@@ -70,8 +81,10 @@ export const MenuItem = styled.div<MenuItemProps>`
   &:hover {
     background-color: #c5b0971a;
   }
-  
-    
+  @media (max-width: 625px) {
+    padding: 5px 0px;
+    width: 35px;
+  }
 `;
 
 export const DividerByDot = styled.span`

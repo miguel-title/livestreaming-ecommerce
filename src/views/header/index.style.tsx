@@ -164,6 +164,9 @@ export const MobileButton = styled.button`
   border-radius: 50%;
   background-color: transparent;
   border: none;
+
+  width: 35px;
+  padding: 0;
 `;
 
 export const MobileMenu = styled.div`

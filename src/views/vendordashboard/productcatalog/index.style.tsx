@@ -6,28 +6,54 @@ export const ProductCatalogWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   padding: 25px 35px;
   width: 100%;
-  
+
   @media (max-width: 992px) {
     width: calc(100% - 60px);
   }
-  
+
+  @media (max-width: 625px) {
+    padding: 25px 10px;
+    width: 100%;
+  }
+
   .HeaderPart {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media (max-width: 625px) {
+      font-size: 10px;
+    }
   }
 
   .HeaderPart > div {
     text-align: left;
-    font-size: 15px;
 
     background-color: #eeeeee;
     color: #555555;
 
-    width: 23%;
+    /* width: 23%; */
     padding: 3px 0 3px 1%;
 
-    border-radius: 10px;
+    /* border-radius: 10px; */
+  }
+
+  .ContentPart {
+    height: 30px;
+    color: #555555;
+    font-size: 14px;
+
+    display: flex;
+
+    > div {
+      text-align: left;
+      color: #555555;
+      padding: 0 0 0 1%;
+      line-height: 30px;
+    }
+
+    @media (max-width: 625px) {
+      font-size: 8px;
+    }
   }
 `;
 
@@ -43,14 +69,18 @@ export const CRUDButtonContainer = styled.div`
     align-items: center;
     justify-content: center;
   }
-  a{
-  text-decoration: none;
-  width: 30%;
-  @media (max-width:992px){
-  display: flex;
-  width:70%;
-  justify-content: center;
+  a {
+    text-decoration: none;
+    width: 30%;
+    @media (max-width: 992px) {
+      display: flex;
+      width: 70%;
+      justify-content: center;
+    }
   }
+
+  @media (max-width: 625px) {
+    margin-top: 10px;
   }
 `;
 
@@ -73,19 +103,11 @@ export const CRUDButton = styled.div<ButtonProps>`
   @media (max-width: 992px) {
     width: 80%;
   }
-  
-  @media (max-width: 600px) {
-    font-size: 15px;
-  }
-  
-  @media (max-width: 526px) {
-    font-size: 15px;
-    width: 100%;
-  }
-  
-  @media (max-width: 424px) {
+
+  @media (max-width: 625px) {
     font-size: 12px;
-    width: 100%;
+    height: 40px;
+    line-height: 40px;
   }
 `;
 
@@ -104,20 +126,32 @@ export const ProductCatalogTextField = styled.input`
   background-color: #eeeeee;
 
   font-size: 20px;
+
+  @media (max-width: 625px) {
+    font-size: 14px;
+    margin: 10px 0;
+    height: 30px;
+    width: 95%;
+  }
 `;
 
 export const ProductCatalogTable = styled.div`
   margin-top: 30px;
-  
+
   @media (max-width: 992px) {
     background-color: #ffffff;
     padding: 1rem 1rem;
   }
-  
-  .HeaderSubpart {
-    overflow: auto;
-    contain: content;
-    min-width: 480px;
+
+  @media (max-width: 625px) {
+    margin-top: 0;
+    padding: 0;
   }
-  overflow: auto;
+
+  .HeaderSubpart {
+    /* overflow: auto; */
+    contain: content;
+    /* min-width: 480px; */
+  }
+  /* overflow: auto; */
 `;

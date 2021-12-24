@@ -8,7 +8,7 @@ export const StartliveContainer = styled.div`
   padding: 25px 35px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   width: calc(100% - 60px);
-`
+`;
 
 export const CameraPart = styled.div`
   margin: 30px 0;
@@ -31,7 +31,6 @@ export const CameraButtonPart = styled.div`
   @media (max-width: 992px) {
     margin-top: 0;
   }
-  
 `;
 
 export const MuteSelectButton = styled.div`
@@ -63,12 +62,21 @@ export const MuteSelectButton = styled.div`
   @media (max-width: 992px) {
     width: 90%;
   }
+
+  @media (max-width: 625px) {
+    height: 40px;
+    width: 40px;
+  }
 `;
 
 export const SoftwarePart = styled.div`
   margin: 30px 0;
   @media (max-width: 992px) {
     margin-top: 0;
+  }
+
+  @media (max-width: 625px) {
+    margin: 10px 0;
   }
 `;
 
@@ -80,6 +88,10 @@ export const SoftwareButtonPart = styled.div`
   @media (max-width: 992px) {
     margin-top: 0;
   }
+
+  @media (max-width: 625px) {
+    margin-top: 10px;
+  }
 `;
 
 export const ShowLabel = styled.div`
@@ -89,10 +101,15 @@ export const ShowLabel = styled.div`
 
   margin-top: 80px;
   margin-bottom: 60px;
-  
+
   @media (max-width: 992px) {
     margin-top: 40px;
-  margin-bottom: 30px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 625px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -115,4 +132,55 @@ export const LiveButtonContainer = styled.div`
 export const LiveButtonPart = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const CustomButton = styled.div`
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #e8b89b;
+  width: 100%;
+  border-radius: 30px;
+  text-align: center;
+  margin: auto;
+
+  height: 50px;
+
+  font-size: 20px;
+
+  line-height: 50px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  @media (max-width: 992px) {
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 625px) {
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+    width: 150px;
+  }
+
+  @media (max-width: 625px) {
+    font-size: 10px;
+    height: 40px;
+    line-height: 40px;
+    width: 140px;
+  }
+
+  @media (max-width: 625px) {
+    font-size: 8px;
+    height: 40px;
+    line-height: 40px;
+    width: 100px;
+  }
 `;

@@ -10,15 +10,28 @@ export const LiveScheduleContainer = styled.div`
   @media (max-width: 992px) {
     width: calc(100% - 60px);
   }
-`
+
+  @media (max-width: 625px) {
+    padding: 25px 10px;
+    width: 100%;
+  }
+`;
 
 export const FormPart = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    margin: 10px 0;
+  }
 `;
 
 export const SubPart = styled.div`
   margin: 20px 0;
+
+  @media (max-width: 625px) {
+    margin: 10px 0;
+  }
 
   &.fullField {
     width: 100%;
@@ -29,8 +42,8 @@ export const SubPart = styled.div`
 
     @media (max-width: 992px) {
       width: 100%;
-      
-      margin:0;
+
+      margin: 0;
     }
   }
 `;
@@ -41,6 +54,10 @@ export const FormLabel = styled.div`
   font-weight: 600;
 
   margin-bottom: 10px;
+
+  @media (max-width: 625px) {
+    font-size: 14px;
+  }
 `;
 
 export const FormTextField = styled.div`
@@ -56,6 +73,13 @@ export const FormTextField = styled.div`
   padding-left: 15px;
 
   width: 100%;
+
+  @media (max-width: 625px) {
+    width: 95%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+  }
 `;
 
 export const SubPartContainer = styled.div`
@@ -89,6 +113,11 @@ export const Description = styled.div`
   font-weight: 600;
 
   margin-bottom: 50px;
+
+  @media (max-width: 625px) {
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
 `;
 
 export const TableContainer = styled.div``;
@@ -100,6 +129,10 @@ export const TableLabel = styled.div`
 
   margin-top: 30px;
   margin-bottom: 30px;
+  @media (max-width: 625px) {
+    margin: 15px 0;
+    font-size: 14px;
+  }
 `;
 
 export const ScheduleTable = styled.div`
@@ -107,31 +140,57 @@ export const ScheduleTable = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 625px) {
+      font-size: 10px;
+    }
   }
 
   .HeaderPart > div {
     text-align: left;
-    font-size: 15px;
 
     background-color: #eeeeee;
     color: #555555;
 
-    width: 32%;
+    /* width: 32%; */
     padding: 3px 0 3px 1%;
 
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
-  
+
+  .ContentPart {
+    height: 30px;
+    color: #555555;
+    font-size: 14px;
+
+    display: flex;
+
+    > div {
+      text-align: left;
+      color: #555555;
+      padding: 0 0 0 1%;
+      line-height: 30px;
+    }
+
+    @media (max-width: 625px) {
+      font-size: 8px;
+    }
+  }
+
   .HeaderSubpart {
     width: 100%;
-    overflow: auto;
+    /* overflow: auto; */
     contain: content;
-    min-width: 480px;
+    /* min-width: 480px; */
   }
-  overflow: auto;
-  
+  /* overflow: auto; */
+
   @media (max-width: 992px) {
     background-color: #ffffff;
     padding: 1rem 1rem;
+  }
+
+  @media (max-width: 625px) {
+    padding: 0;
   }
 `;
