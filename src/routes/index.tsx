@@ -6,6 +6,7 @@ import LoadingScreen from "../components/loadingscreen";
 import MainGuard from "../components/MainGuard";
 import GuestGuard from "../components/GuestGuard";
 import AuthGuard from "../components/AuthGuard";
+import UserAuthGuard from "../components/UserAuthGuard";
 import AdminGuard from "../components/AdminGuard";
 import AdminGuestGuard from "../components/AdminGuestGuard";
 
@@ -78,25 +79,25 @@ const routes: RouteItem[] = [
   {
     exact: true,
     path: "/painel-usuario",
-    guard: AuthGuard,
+    guard: UserAuthGuard,
     component: lazy(() => import("../views/userdashboard")),
   },
   {
     exact: true,
     path: "/editar-pedido",
-    guard: AuthGuard,
+    guard: UserAuthGuard,
     component: lazy(() => import("../views/userdashboard/editpedido")),
   },
   {
     exact: true,
     path: "/falar-com-vendedor",
-    guard: AuthGuard,
+    guard: UserAuthGuard,
     component: lazy(() => import("../views/userdashboard/contactvendor")),
   },
   {
     exact: true,
     path: "/edituser",
-    guard: AuthGuard,
+    guard: UserAuthGuard,
     component: lazy(() => import("../views/userdashboard/edituser")),
   },
   {

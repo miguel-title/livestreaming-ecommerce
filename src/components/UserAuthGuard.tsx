@@ -4,35 +4,39 @@ import PropTypes from "prop-types";
 import useAuth from "../hooks/useAuth";
 import jwtDecode from "jwt-decode";
 
-interface AdminGuardProps {
+interface UserAuthGuardProps {
   children?: ReactNode;
 }
 
-const AdminGuard: FC<AdminGuardProps> = ({ children }) => {
-  // const { isAuthenticated, user } = useAuth();
+const UserAuthGuard: FC<UserAuthGuardProps> = ({ children }) => {
+  // const { isAuthenticated } = useAuth();
+
+  // if (isAuthenticated == true) {
+  //   return <>{children}</>;
+  // } else {
 
   const accessToken: any = window.localStorage.getItem("accessToken");
   const decoded: any = jwtDecode(accessToken);
 
   if (window.localStorage.getItem("accessToken") != null) {
-    if (decoded.role == 2) {
+    if (decoded.role == 1) {
       const isAuthenticate =
         window.localStorage.getItem("accessToken") != "" ? true : false;
 
       if (!isAuthenticate) {
-        return <Navigate to="/admin/login" />;
+        return <Navigate to="/login" />;
       }
       return <>{children}</>;
-    } else {
-      return <Navigate to="/admin/login" />;
     }
+    return <Navigate to="/login" />;
   } else {
-    return <Navigate to="/admin/login" />;
+    return <Navigate to="/login" />;
   }
+  // }
 };
 
-AdminGuard.propTypes = {
+UserAuthGuard.propTypes = {
   children: PropTypes.node,
 };
 
-export default AdminGuard;
+export default UserAuthGuard;

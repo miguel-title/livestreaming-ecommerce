@@ -2,6 +2,7 @@ import type { FC, ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import useAuth from "../hooks/useAuth";
+import jwtDecode from "jwt-decode";
 
 interface AuthGuardProps {
   children?: ReactNode;
@@ -14,14 +15,20 @@ const AuthGuard: FC<AuthGuardProps> = ({ children }) => {
   //   return <>{children}</>;
   // } else {
 
-  if (window.localStorage.getItem("accessToken") != null) {
-    const isAuthenticate =
-      window.localStorage.getItem("accessToken") != "" ? true : false;
+  const accessToken: any = window.localStorage.getItem("accessToken");
+  const decoded: any = jwtDecode(accessToken);
 
-    if (!isAuthenticate) {
-      return <Navigate to="/login" />;
+  if (window.localStorage.getItem("accessToken") != null) {
+    if (decoded.role == 0) {
+      const isAuthenticate =
+        window.localStorage.getItem("accessToken") != "" ? true : false;
+
+      if (!isAuthenticate) {
+        return <Navigate to="/login" />;
+      }
+      return <>{children}</>;
     }
-    return <>{children}</>;
+    return <Navigate to="/login" />;
   } else {
     return <Navigate to="/login" />;
   }
