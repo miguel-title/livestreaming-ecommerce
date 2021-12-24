@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const LoginWrapper = styled.div`
   height: calc(100vh - 130px);
   background: #c5b0971a;
-  margin-top: 130px;
+  margin-top: 100px;
 
   display: flex;
   align-items: center;

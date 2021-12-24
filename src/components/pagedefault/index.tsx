@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   background-color: #c5b0971a;
 
-  margin-top: 130px;
+  margin-top: 100px;
 `;
 
 export const Container = styled.div`
@@ -69,11 +69,11 @@ export const CustomButton = styled.div`
   @media (max-width: 992px) {
     width: 90%;
   }
-  
+
   @media (max-width: 768px) {
     font-size: 15px;
   }
-  
+
   @media (max-width: 500px) {
     font-size: 12px;
   }

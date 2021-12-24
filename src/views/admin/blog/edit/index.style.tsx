@@ -4,6 +4,11 @@ export const SubTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
+
+  @media (max-width: 625px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const FormPart = styled.form``;
@@ -41,8 +46,12 @@ export const SubmitButtonContainer = styled.div`
       font-size: 15px;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 625px) {
       font-size: 12px;
+      height: 30px;
+      border-radius: 10px;
+      line-height: 30px;
+      margin-bottom: 0px;
     }
   }
 `;

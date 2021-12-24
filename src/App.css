@@ -103,3 +103,29 @@
   top: 0;
   left: 5px;
 }
+
+@media (max-width: 625px) {
+  .priviousPagination:after {
+    font-size: 14px;
+  }
+
+  .nextPagination:after {
+    font-size: 14px;
+  }
+
+  .pagination > li {
+    font-size: 14px;
+  }
+
+  .pagination {
+    margin-top: 0;
+  }
+
+  .pagination .previous {
+    display: flex;
+  }
+
+  .pagination .next {
+    display: flex;
+  }
+}

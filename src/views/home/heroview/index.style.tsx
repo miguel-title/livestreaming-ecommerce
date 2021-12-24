@@ -9,7 +9,7 @@ export const HeroViewWrapper = styled.div`
   background-position: center;
 
   @media (max-width: 768px) {
-    margin-top: 130px;
+    margin-top: 100px;
     margin-bottom: 150px;
   }
 `;

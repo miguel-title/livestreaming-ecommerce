@@ -6,6 +6,9 @@ export const BlogViewWrapper = styled.div`
   padding: 3rem 0;
 
   margin: 100px 0 0 0;
+  @media (max-width: 625px) {
+    padding: 0 0 3rem 0;
+  }
 `;
 
 export const BlogViewContainer = styled.div`

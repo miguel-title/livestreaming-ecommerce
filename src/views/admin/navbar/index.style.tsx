@@ -13,6 +13,12 @@ export const NavbarWrapper = styled.div`
   z-index: 1;
 
   position: relative;
+
+  @media (max-width: 625px) {
+    padding: 0 35px 20px 35px;
+    width: auto;
+    margin-right: 10px;
+  }
 `;
 
 export const LogoutButton = styled.div`
@@ -42,4 +48,11 @@ export const LogoutButton = styled.div`
 
   position: absolute;
   right: 0;
+
+  @media (max-width: 625px) {
+    height: 25px;
+    font-size: 14px;
+    line-height: 25px;
+    width: 60px;
+  }
 `;

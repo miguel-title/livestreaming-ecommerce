@@ -11,10 +11,24 @@ export const SideBarWrapper = styled.div`
   background: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   z-index: 1;
+
+  @media (max-width: 625px) {
+    padding: 20px 5px;
+  }
 `;
 
 export const SideBarHeader = styled.div`
   display: flex;
+
+  .logoImg {
+    width: 70px;
+    height: 70px;
+
+    @media (max-width: 625px) {
+      width: 35px;
+      height: 35px;
+    }
+  }
 `;
 
 export const SideBarContent = styled.div`
@@ -23,6 +37,10 @@ export const SideBarContent = styled.div`
   margin-top: 20px;
   a {
     text-decoration: none;
+  }
+
+  @media (max-width: 625px) {
+    margin-top: 0px;
   }
 `;
 
@@ -48,6 +66,10 @@ export const MenuItem = styled.div<MenuItemProps>`
   }
   &:hover {
     background-color: #c5b0971a;
+  }
+
+  @media (max-width: 625px) {
+    padding: 5px 0px;
   }
 `;
 

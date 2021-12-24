@@ -32,7 +32,14 @@ export const LoadMoreButton = styled.div`
     font-size: 15px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 625px) {
+    margin-top: 10px;
+    margin-bottom: 0px;
+
+    height: 30px;
+    line-height: 30px;
+
+    width: 100px;
     font-size: 12px;
   }
 `;

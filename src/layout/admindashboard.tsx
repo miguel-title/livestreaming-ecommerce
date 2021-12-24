@@ -15,6 +15,11 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 100px;
+
+  @media (max-width: 625px) {
+    padding: 25px 25px 25px 0;
+    margin-left: 70px;
+  }
 `;
 
 const ContentWrapper = styled.div`

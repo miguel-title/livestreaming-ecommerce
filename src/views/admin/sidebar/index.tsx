@@ -19,7 +19,7 @@ export default function index() {
       <SideBarWrapper>
         <SideBarHeader>
           <Link to="/admin/dashboard">
-            <img src={logoImage} width={70} height={70} alt="logo" />
+            <img src={logoImage} alt="logo" className="logoImg" />
           </Link>
         </SideBarHeader>
         <SideBarContent>

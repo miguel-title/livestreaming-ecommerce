@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const UserDashboardWrapper = styled.div`
   background-color: #c5b0971a;
 
-  margin-top: 130px;
+  margin-top: 100px;
 
   .HeaderPart {
     display: flex;

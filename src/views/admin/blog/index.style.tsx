@@ -28,13 +28,13 @@ export const NewPostButton = styled.div`
     font-size: 15px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 625px) {
     font-size: 12px;
     width: 150px;
     height: 30px;
     line-height: 30px;
 
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 0;
   }
 `;
