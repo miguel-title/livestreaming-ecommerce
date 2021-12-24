@@ -10,6 +10,7 @@ interface AdminGuardProps {
 const AdminGuard: FC<AdminGuardProps> = ({ children }) => {
   // const { isAuthenticated, user } = useAuth();
 
+  console.log(window.localStorage.getItem("accessToken"));
   if (window.localStorage.getItem("accessToken") != null) {
     const isAuthenticate =
       window.localStorage.getItem("accessToken") != "" ? true : false;
