@@ -42,16 +42,16 @@ export default function UserDashboard() {
             <TableTitle>Pedidos</TableTitle>
             <UserTable>
               <div className="HeaderPart">
-                <div>Nº</div>
-                <div>Data</div>
-                <div>Status</div>
+                <div style={{ width: "30%" }}>Nº</div>
+                <div style={{ width: "40%" }}>Data</div>
+                <div style={{ width: "30%" }}>Status</div>
               </div>
               <div className="ContentPart">
                 {[...userData].map((eachData, index) => (
                   <div key={index} className="row">
-                    <div>eachData.number</div>
-                    <div>eachData.data</div>
-                    <div>eachData.status</div>
+                    <div style={{ width: "30%" }}>eachData.number</div>
+                    <div style={{ width: "40%" }}>eachData.data</div>
+                    <div style={{ width: "30%" }}>eachData.status</div>
                   </div>
                 ))}
               </div>

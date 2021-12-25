@@ -143,7 +143,6 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         userName: "",
         errMsg: "",
       };
-
       await Login({ email: _email, password: _password, role: _role }).then(
         (data: any) => {
           status = data.status;

@@ -5,23 +5,31 @@ export const UserDashboardWrapper = styled.div`
 
   margin-top: 100px;
 
+  @media (max-width: 425px) {
+    margin-top: 80px;
+  }
+
   .HeaderPart {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 425px) {
+      font-size: 10px;
+    }
   }
 
   .HeaderPart > div {
     text-align: left;
-    font-size: 20px;
+    /* font-size: 20px; */
 
     background-color: #eeeeee;
     color: #555555;
 
-    width: 32%;
+    /* width: 32%; */
     padding: 3px 0 3px 1%;
 
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 
   .eachButtonPart {
@@ -31,6 +39,12 @@ export const UserDashboardWrapper = styled.div`
       width: 100%;
 
       margin-bottom: 30px;
+    }
+
+    @media (max-width: 425px) {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
     }
   }
 `;
@@ -71,6 +85,13 @@ export const Title = styled.div`
   color: #e8b89b;
   font-size: 30px;
   font-weight: 600;
+
+  @media (max-width: 425px) {
+    padding-top: 50px;
+    font-size: 20px;
+
+    margin-bottom: 25px;
+  }
 `;
 
 export const ButtonGroup = styled.div`
@@ -84,6 +105,10 @@ export const ButtonGroup = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media (max-width: 425px) {
+    margin-bottom: 25px;
+  }
 `;
 
 export const TablePart = styled.div`
@@ -96,6 +121,11 @@ export const TableTitle = styled.div`
   font-weight: 600;
 
   margin-bottom: 20px;
+
+  @media (max-width: 425px) {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const UserTable = styled.div``;
@@ -117,4 +147,14 @@ export const Button = styled.div`
   font-weight: 600;
 
   cursor: pointer;
+
+  @media (max-width: 425px) {
+    border-radius: 10px;
+    height: 40px;
+    line-height: 40px;
+
+    width: 180px;
+
+    font-size: 18px;
+  }
 `;

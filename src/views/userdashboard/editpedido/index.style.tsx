@@ -5,23 +5,31 @@ export const EditPedidoWrapper = styled.div`
 
   margin-top: 100px;
 
+  @media (max-width: 425px) {
+    margin-top: 80px;
+  }
+
   .HeaderPart {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 425px) {
+      font-size: 10px;
+    }
   }
 
   .HeaderPart > div {
     text-align: left;
-    font-size: 20px;
+    /* font-size: 20px; */
 
     background-color: #eeeeee;
     color: #555555;
 
-    width: 32%;
+    /* width: 32%; */
     padding: 3px 0 3px 1%;
 
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 `;
 
@@ -32,10 +40,19 @@ export const PedidoTitle = styled.div`
   color: #e8b89b;
   font-size: 30px;
   font-weight: 600;
+
+  @media (max-width: 425px) {
+    font-size: 20px;
+    padding-top: 50px;
+  }
 `;
 
 export const PedidoInfoTable = styled.div`
   margin-bottom: 30px;
+
+  @media (max-width: 425px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ItemsTitle = styled.div`
@@ -52,6 +69,10 @@ export const ItemInfoTable = styled.div`
 
 export const ContactInfo = styled.div`
   margin-bottom: 80px;
+
+  @media (max-width: 425px) {
+    margin-bottom: 50px;
+  }
 `;
 
 export const SubPart = styled.div``;
@@ -69,6 +90,10 @@ export const ContactLabel = styled.div`
   font-weight: 600;
 
   margin-bottom: 10px;
+
+  @media (max-width: 425px) {
+    font-size: 14px;
+  }
 `;
 
 export const ContactTextField = styled.input`
@@ -82,6 +107,12 @@ export const ContactTextField = styled.input`
   border-radius: 10px;
 
   padding-left: 15px;
+
+  @media (max-width: 425px) {
+    height: 30px;
+    font-size: 12px;
+    width: 95%;
+  }
 `;
 
 export const ContactVendorButton = styled.div`
@@ -107,6 +138,13 @@ export const ContactVendorButton = styled.div`
 
     font-size: 3.125vw;
   }
+
+  @media (max-width: 425px) {
+    height: 50px;
+    line-height: 50px;
+    width: 250px;
+    border-radius: 10px;
+  }
 `;
 
 export const ContactButtonPart = styled.div`
@@ -115,6 +153,10 @@ export const ContactButtonPart = styled.div`
   margin-top: 50px;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 425px) {
+    margin-bottom: 50px;
+  }
 `;
 
 export const SubItemPartContainer = styled.div`

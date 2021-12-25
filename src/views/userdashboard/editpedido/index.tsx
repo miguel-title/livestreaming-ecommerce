@@ -37,16 +37,16 @@ export default function EditPedido() {
           <PedidoTitle>Pedido</PedidoTitle>
           <PedidoInfoTable>
             <div className="HeaderPart">
-              <div>Nº</div>
-              <div>Data</div>
-              <div>Status</div>
+              <div style={{ width: "30%" }}>Nº</div>
+              <div style={{ width: "40%" }}>Data</div>
+              <div style={{ width: "30%" }}>Status</div>
             </div>
             <div className="ContentPart">
               {[...pedidoData].map((eachData, index) => (
                 <div key={index} className="row">
-                  <div>eachData.number</div>
-                  <div>eachData.data</div>
-                  <div>eachData.status</div>
+                  <div style={{ width: "30%" }}>eachData.number</div>
+                  <div style={{ width: "40%" }}>eachData.data</div>
+                  <div style={{ width: "30%" }}>eachData.status</div>
                 </div>
               ))}
             </div>
@@ -54,16 +54,16 @@ export default function EditPedido() {
           <PedidoTitle>Itens</PedidoTitle>
           <ItemInfoTable>
             <div className="HeaderPart">
-              <div>Qtd</div>
-              <div>Item</div>
-              <div></div>
+              <div style={{ width: "30%" }}>Qtd</div>
+              <div style={{ width: "40%" }}>Item</div>
+              <div style={{ width: "30%" }}></div>
             </div>
             <div className="ContentPart">
               {[...itemData].map((eachData, index) => (
                 <div key={index} className="row">
-                  <div>eachData.number</div>
-                  <div>eachData.data</div>
-                  <div>eachData.status</div>
+                  <div style={{ width: "30%" }}>eachData.number</div>
+                  <div style={{ width: "40%" }}>eachData.data</div>
+                  <div style={{ width: "30%" }}>eachData.status</div>
                 </div>
               ))}
             </div>

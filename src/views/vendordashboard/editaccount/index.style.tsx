@@ -315,6 +315,7 @@ export const SubmitButtonContainer = styled.div`
       height: 40px;
       line-height: 40px;
       width: 150px;
+      border-radius: 10px;
     }
   }
 `;

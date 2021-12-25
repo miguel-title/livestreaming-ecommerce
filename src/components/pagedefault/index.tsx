@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
   background-color: #c5b0971a;
 
   margin-top: 100px;
+
+  @media (max-width: 425px) {
+    margin-top: 80px;
+  }
 `;
 
 export const Container = styled.div`

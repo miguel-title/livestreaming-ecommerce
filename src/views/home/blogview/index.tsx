@@ -42,7 +42,6 @@ export default function BlogView() {
   }, [blogAllData]);
 
   useEffect(() => {
-    console.log("bbbb");
     const datatotalLength = blogAllData.length;
     setShowMore(datatotalLength > currentCount);
     const data = getBlogData(currentCount);
