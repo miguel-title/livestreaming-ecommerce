@@ -16,6 +16,12 @@ export const BackButton = styled.div`
   font-size: calc(1.275rem + 0.3vw);
 
   cursor: pointer;
+
+  @media (max-width: 625px) {
+    margin-top: 20px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
 `;
 
 export const BackButtonContainer = styled.div`
@@ -37,6 +43,14 @@ export const PaymentTitle = styled.div`
 
   margin-bottom: 20px;
   color: #555555;
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+  }
+  @media (max-width: 625px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const PaymentTextField = styled.input`
@@ -48,6 +62,34 @@ export const PaymentTextField = styled.input`
   width: 200px;
 
   padding-left: 10px;
+
+  @media (max-width: 992px) {
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 30px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 30px;
+  }
+
+  @media (max-width: 625px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 60px;
+    height: 20px;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 45px;
+    height: 20px;
+  }
 `;
 
 export const FormTextField = styled.input`

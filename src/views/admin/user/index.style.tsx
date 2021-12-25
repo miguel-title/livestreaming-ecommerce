@@ -14,6 +14,10 @@ export const PaymentTitle = styled.div`
   margin-bottom: 20px;
   color: #555555;
 
+  @media (max-width: 992px) {
+    font-size: 20px;
+  }
+
   @media (max-width: 625px) {
     font-size: 14px;
     margin-bottom: 10px;
@@ -29,6 +33,19 @@ export const PaymentTextField = styled.input`
   width: 200px;
 
   padding-left: 10px;
+  @media (max-width: 992px) {
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 30px;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 30px;
+  }
 
   @media (max-width: 625px) {
     font-size: 14px;
