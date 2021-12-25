@@ -12,6 +12,7 @@ export const AboutViewWarpper = styled.div`
   background-repeat: no-repeat;
 
   @media (max-width: 992px) {
+    background-image: none;
     background-position-x: center;
     background-position-y: center;
   }
