@@ -36,6 +36,13 @@ export const PaymentTextField = styled.input`
     width: 60px;
     height: 20px;
   }
+
+  @media (max-width: 375px) {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 45px;
+    height: 20px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
