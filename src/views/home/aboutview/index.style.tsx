@@ -10,6 +10,11 @@ export const AboutViewWarpper = styled.div`
   background-image: Url(${Logo_Bg});
   background-size: contain;
   background-repeat: no-repeat;
+
+  @media (max-width: 992px) {
+    background-position-x: center;
+    background-position-y: center;
+  }
 `;
 
 export const AboutViewContainer = styled.div`
@@ -108,4 +113,8 @@ export const AboutViewImgPart = styled.div`
 
 export const AboutViewImgSubPart = styled.div`
   text-align: center;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
